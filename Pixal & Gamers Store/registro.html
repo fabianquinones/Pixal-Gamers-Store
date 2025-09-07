@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Pixal & Gamers Store</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="icon" href="images/LogoV2.png" type="image/png">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/bitmap.png" alt="Pixel & Gamers Store Logo" width="150">
+      <h1>Pixel & Gamers Store</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="registro.html" class="activo">Registro</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="carrito.html">🛒 Carrito</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="formulario cuadro-registro">
+      <h2>Registro de Usuario</h2>
+      <form id="formRegistro">
+        <div class="campo">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" maxlength="50" required>
+        </div>
+
+        <div class="campo">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos" name="apellidos" maxlength="100" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" name="correo" maxlength="100" required placeholder="ejemplo@duoc.cl">
+        </div>
+
+        <div class="campo">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" minlength="6" required>
+        </div>
+
+        <div class="campo">
+          <label for="confirmar-password">Confirmar Contraseña:</label>
+          <input type="password" id="confirmar-password" name="confirmar-password" minlength="6" required>
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" maxlength="15" required placeholder="+56 9 1234 5678">
+        </div>
+
+        <div class="campo">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" name="direccion" maxlength="100" required>
+        </div>
+
+        <div class="campo">
+          <label for="region">Región:</label>
+          <select id="region" name="region" required>
+            <option value="">Seleccione una región</option>
+            <option value="metropolitana">Metropolitana</option>
+            <option value="valparaiso">Valparaíso</option>
+            <option value="biobio">Biobío</option>
+            <option value="la-araucania">La Araucanía</option>
+            <option value="los-lagos">Los Lagos</option>
+            <option value="aysen">Aysén</option>
+            <option value="magallanes">Magallanes</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="terminos">
+            <input type="checkbox" id="terminos" name="terminos" required>
+            Acepto los términos y condiciones
+          </label>
+        </div>
+
+        <div class="campo">
+          <button type="submit">Registrarse</button>
+        </div>
+      </form>
+      <div class="acciones">
+        <p>¿Ya tienes una cuenta?</p>
+        <a href="login.html"><button class="btn-primario">Iniciar Sesión</button></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Pixel & Gamers Store. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

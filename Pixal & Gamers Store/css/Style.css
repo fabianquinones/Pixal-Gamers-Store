@@ -1,0 +1,190 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Colores personalizados para cada página */
+.index-page, .login-page, .nosotros-page, .registro-page {
+  background-color: #121212;
+  color: #00ff00;
+}
+
+header, .presentacion, .productos-destacados, .producto, footer {
+  background-color: #121212 !important;
+  color: #00ff00 !important;
+  border-color: #00ff00 !important;
+}
+
+nav a, .producto button {
+  background-color: #00ff00;
+  color: #121212;
+}
+
+nav a:hover, .producto button:hover {
+  background-color: #00ff00;
+  color: #121212;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+/* Header */
+header {
+  background-color: #1f1f1f;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo h1 {
+  color: #00ff00;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a, nav ul li a {
+  color: #00ff00 !important;
+  text-decoration: none;
+  background: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+nav a:hover, nav ul li a:hover {
+  color: #121212 !important;
+  background-color: #00ffcc !important;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* Presentación */
+.presentacion {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #1a1a1a;
+  box-shadow: inset 0 0 30px rgba(0, 255, 204, 0.2);
+}
+
+.presentacion h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffcc;
+  text-shadow: 0 0 15px #00ffcc;
+}
+
+/* Productos destacados */
+.productos-destacados {
+  padding: 2rem;
+}
+
+.productos-destacados h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff33cc;
+  text-shadow: 0 0 15px #ff33cc;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.producto {
+  background: #1f1f1f;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 51, 204, 0.6);
+}
+
+.producto img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.producto h3 {
+  margin: 0.5rem 0;
+}
+
+.producto button {
+  background: #00ff00 !important;
+  color: #121212 !important;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.producto button:hover {
+  background: #00ffcc !important;
+  color: #121212 !important;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* Footer */
+footer {
+  background-color: #1f1f1f;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #ffffff;
+}
+
+/* Estilo para el formulario de registro */
+.cuadro-registro {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: #1f1f1f;
+  border: 2px solid #00ff00;
+  border-radius: 16px;
+  box-shadow: 0 0 20px #00ff0044;
+  padding: 2rem;
+}
+
+.cuadrado-login {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: #232323;
+  border: 2px solid #00ffcc;
+  border-radius: 16px;
+  box-shadow: 0 0 20px #00ffcc44;
+  padding: 2rem;
+}
+
+.img-contenedor {
+  position: relative;
+  display: inline-block;
+}
+.descripcion-hover {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 255, 0, 0.95);
+  color: #121212;
+  padding: 0.5rem;
+  border-radius: 0 0 8px 8px;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+.img-contenedor:hover .descripcion-hover {
+  display: block;
+}

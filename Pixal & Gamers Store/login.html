@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pixal & Gamers Store</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="icon" href="images/LogoV2.png" type="image/png">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/bitmap.png" alt="Pixel & Gamers Store Logo" width="150">
+      <h1>Pixel & Gamers Store</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="registro.html" class="activo">Registro</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="carrito.html">🛒 Carrito</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="formulario cuadrado-login">
+      <h2>Iniciar Sesión</h2>
+      <form id="formLogin">
+        <div class="campo">
+          <label for="usuario">Usuario o Correo:</label>
+          <input type="text" id="usuario" name="usuario" maxlength="100" required>
+        </div>
+        <div class="campo">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" maxlength="50" required>
+        </div>
+        <div class="acciones">
+          <button type="submit" class="btn-primario">Iniciar Sesión</button>
+        </div>
+      </form>
+      <div class="acciones">
+        <p>¿No tienes cuenta?</p>
+        <a href="registro.html"><button class="btn-primario">Registrarse</button></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="contenedor">
+      <div class="footer-info">
+        <div class="logo-footer">
+          <img src="images/bitmap.png" alt="Pixel & Gamers Store Logo" width="150">
+        </div>
+        
+      </div>
+
+      <div class="footer-contacto">
+        <h3>Contacto</h3>
+        <p>¿Tienes preguntas o comentarios?</p>
+        <p>Escríbenos a <a href="mailto:contacto@pixelygamers.cl">contacto@pixelygamers.cl</a></p>
+        <p>O llámanos al +56 9 8765 4321</p>
+      </div>
+
+      <div class="footer-redes">
+        <h3>Síguenos en redes sociales</h3>
+        <a href="https://www.facebook.com/pixelygamers" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/pixelygamers" target="_blank">Instagram</a>
+        <a href="https://twitter.com/pixelygamers" target="_blank">Twitter</a>
+      </div>
+    </div>
+
+    <div class="footer-bot">
+      <p>&copy; 2023 Pixel & Gamers Store. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
