@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Pixal & Gamers Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/Style.css">
+    <link rel="icon" href="images/LogoV2.png" type="image/png">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom w-100 full-bleed">
+      <div class="container-fluid px-0">
+        <div class="navbar-brand d-flex align-items-center no-click">
+          <img src="images/bitmap.png" alt="Pixel & Gamers Store Logo" width="130" class="me-2">
+          <span class="titulo-brand">Pixel & Gamers Store</span>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="productos.html">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link carrito-link" href="carrito.html">🛒 Carrito</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="filtros-productos">
+      <form id="formFiltros" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
+        <select name="categoria" id="categoria">
+          <option value="">Todas las categorías</option>
+          <option value="perifericos">Periféricos</option>
+          <option value="audio">Audio</option>
+          <option value="monitores">Monitores</option>
+          <option value="juegos">Juegos</option>
+        </select>
+        <input type="text" id="buscador" name="buscador" placeholder="Buscar producto..." style="padding: 0.5rem; border-radius: 8px; border: 1px solid #00ff00;">
+        <button type="submit" style="background: #00ff00; color: #121212; border: none; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer;">Buscar</button>
+      </form>
+    </section>
+    <section class="lista-productos">
+      <h2>Todos los Productos</h2>
+      <div class="grid-productos">
+        <div class="producto">
+          <div class="img-contenedor">
+            <a href="detalle-mouse.html">
+            <img src="images/mouse-removebg-preview.png" alt="Mouse Gamer RGB">
+            <div class="descripcion-hover">Mouse gamer con luces RGB y alta precisión.</div>
+          </div>
+          <h3>Mouse Gamer RGB</h3>
+        </a>
+          <p>$19.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <a href="detalle-teclado.html">
+            <img src="images/teclado-removebg-preview.png" alt="Teclado Mecánico">
+            <div class="descripcion-hover">Teclado mecánico con switches azules y retroiluminación.</div>
+          </div>
+          <h3>Teclado Mecánico</h3>
+        </a>
+          <p>$39.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <a href="detalle-audifonos.html">
+            <img src="images/auricolare-removebg-preview.png" alt="Auriculares Pro">
+            <div class="descripcion-hover">Auriculares con micrófono y sonido envolvente.</div>
+          </div>
+          <h3>Auriculares Pro</h3>
+        </a>
+          <p>$29.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <a href="detalle-monitor.html">
+            <img src="images/monitor-removebg-preview.png" alt="Monitor 144Hz">
+            <div class="descripcion-hover">Monitor de 24" con 144Hz y panel IPS.</div>
+          </div>
+          <h3>Monitor 144Hz</h3>
+        </a>
+          <p>$149.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <a href="detalle-silksong.html">
+            <img src="Images/juego1.png" alt="Hollow Knight Silksong Steam Key">
+            <div class="descripcion-hover">Metroidvania de acción y exploración protagonizado por Hornet.</div>
+          </div>
+          <h3>Hollow Knight Silksong</h3>
+        </a>
+          <p>$10.500</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Teclado Clásico">
+            <div class="descripcion-hover">Teclado de membrana silencioso y ergonómico.</div>
+          </div>
+          <h3>Teclado Clásico</h3>
+          <p>$12.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Pad Mouse XL">
+            <div class="descripcion-hover">Alfombrilla de mouse XL, superficie suave.</div>
+          </div>
+          <h3>Pad Mouse XL</h3>
+          <p>$5.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Cable USB-C">
+            <div class="descripcion-hover">Cable USB-C 2.0, 1 metro de longitud.</div>
+          </div>
+          <h3>Cable USB-C</h3>
+          <p>$2.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Webcam HD">
+            <div class="descripcion-hover">Webcam HD 720p con micrófono integrado.</div>
+          </div>
+          <h3>Webcam HD</h3>
+          <p>$15.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Micrófono USB">
+            <div class="descripcion-hover">Micrófono USB con cancelación de ruido.</div>
+          </div>
+          <h3>Micrófono USB</h3>
+          <p>$9.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Soporte Monitor">
+            <div class="descripcion-hover">Soporte para monitor, ajustable en altura.</div>
+          </div>
+          <h3>Soporte Monitor</h3>
+          <p>$11.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+        <div class="producto">
+          <div class="img-contenedor">
+            <img src="images/bitmap.png" alt="Hub USB 4 Puertos">
+            <div class="descripcion-hover">Hub USB 3.0 con 4 puertos, compacto y portátil.</div>
+          </div>
+          <h3>Hub USB 4 Puertos</h3>
+          <p>$6.990</p>
+          <button>Añadir al carrito</button>
+        </div>
+      </div>
+      <div class="paginacion" style="text-align:center; margin-top:2rem;">
+        <a href="productos.html?page=1"><button style="background: #00ff00; color: #121212; border: none; border-radius: 8px; padding: 0.5rem 1rem; margin: 0 0.5rem; cursor: pointer;">&lt; Anterior</button></a>
+        <span>Página 1 de 3</span>
+        <a href="productos2.html"><button style="background: #00ff00; color: #121212; border: none; border-radius: 8px; padding: 0.5rem 1rem; margin: 0 0.5rem; cursor: pointer;">Siguiente &gt;</button></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer-3 mt-5">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <img src="images/bitmap.png" alt="Pixel & Gamers Store" class="footer-logo" loading="lazy" width="180" height="auto">
+        </div>
+        <div class="footer-col footer-contacto">
+          <h3 class="footer-title">Contacto</h3>
+          <p class="footer-text">¿Preguntas o comentarios?</p>
+          <p class="footer-text">Escríbenos: <a href="mailto:contacto@pixelgamers.store" class="footer-link">contacto@pixelgamers.store</a></p>
+          <p class="footer-text">O llámanos: <a href="tel:+56912345678" class="footer-link">+56 9 1234 5678</a></p>
+        </div>
+        <div class="footer-col footer-social">
+          <h3 class="footer-title">Síguenos en redes sociales</h3>
+          <ul class="social-list">
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link">Facebook</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link">Instagram</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener" class="social-link">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 Pixel & Gamers Store</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
