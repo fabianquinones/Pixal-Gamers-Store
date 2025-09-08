@@ -1,0 +1,403 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Colores personalizados para cada página */
+.index-page, .login-page, .nosotros-page, .registro-pag.carrusel-hero .carousel-item.active {
+  background:#000; /* fondo para bandas */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+
+header, .presentacion, .productos-destacados, .producto, footer {
+  background-color: #121212 !important;
+  color: #00ff00 !important;
+  border-color: #00ff00 !important;
+}
+
+nav a, .producto button {
+  background-color: #00ff00;
+  color: #121212;
+}
+
+nav a:hover, .producto button:hover {
+  background-color: #00ff00;
+  color: #121212;
+  box-shadow: 0 0 10px #00ff00;
+}
+/* =======================================================================
+   BASE
+   ======================================================================= */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Páginas base / placeholder combinadas */
+.index-page,
+.login-page,
+.nosotros-page,
+.registro-pag.carrusel-hero .carousel-item.active {
+  align-items: center;
+  background: #000;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tonalidad general en ciertos bloques */
+header,
+.presentacion,
+.productos-destacados,
+.producto,
+footer {
+  background-color: #121212 !important;
+  border-color: #00ff00 !important;
+  color: #00ff00 !important;
+}
+
+/* Acciones comunes nav / botones producto */
+nav a,
+.producto button {
+  background-color: #00ff00;
+  color: #121212;
+}
+nav a:hover,
+.producto button:hover {
+  background-color: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+  color: #121212;
+}
+
+/* =======================================================================
+   HEADER / NAVBAR
+   ======================================================================= */
+header {
+  align-items: center;
+  background-color: #1f1f1f;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+header .logo img { max-height: 190px; width: auto; }
+@media (max-width: 600px) { header .logo img { max-height: 130px; } }
+
+.navbar-custom {
+  background: #1f1f1f;
+  border-bottom: 2px solid #00ff00;
+  box-shadow: 0 0 15px #00ff0044;
+}
+.navbar-custom.full-bleed { margin: 0; padding-left: 2rem; padding-right: 2rem; width: 100%; }
+@media (max-width: 768px) { .navbar-custom.full-bleed { padding-left: 1rem; padding-right: 1rem; } }
+
+.navbar-custom .navbar-brand .titulo-brand {
+  color: #00ff00;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 8px #00ff00;
+}
+.navbar-custom .navbar-brand.no-click { cursor: default; pointer-events: none; }
+.navbar-custom .navbar-brand.no-click img,
+.navbar-custom .navbar-brand.no-click .titulo-brand { user-select: none; }
+.navbar-custom .navbar-brand img { max-height: 90px; width: auto; }
+
+.navbar-custom .nav-link {
+  border-radius: 8px;
+  color: #00ff00 !important;
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  transition: all 0.25s ease;
+}
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link:focus,
+.navbar-custom .nav-link.active {
+  background: #00ffcc !important;
+  box-shadow: 0 0 12px #00ffcc;
+  color: #121212 !important;
+}
+.navbar-custom .navbar-toggler { border-color: #00ff00; }
+.navbar-custom .navbar-toggler-icon { filter: drop-shadow(0 0 5px #00ff00); }
+
+@media (max-width: 991.98px) {
+  .navbar-custom .nav-link { margin-top: 0.4rem; }
+  .navbar-custom .navbar-brand img { max-height: 70px; }
+}
+
+header .logo h1 { color: #00ff00; }
+nav ul { display: flex; gap: 1rem; list-style: none; }
+nav a,
+nav ul li a {
+  background: none;
+  border-radius: 8px;
+  color: #00ff00 !important;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+nav a:hover,
+nav ul li a:hover {
+  background-color: #00ffcc !important;
+  box-shadow: 0 0 10px #00ffcc;
+  color: #121212 !important;
+}
+
+/* =======================================================================
+   PRESENTACIÓN
+   ======================================================================= */
+.presentacion {
+  background: #1a1a1a;
+  box-shadow: inset 0 0 30px rgba(0, 255, 204, 0.2);
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.presentacion h2 {
+  color: #00ffcc;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px #00ffcc;
+}
+
+/* =======================================================================
+   PRODUCTOS DESTACADOS
+   ======================================================================= */
+.productos-destacados {
+   padding: 2rem; 
+  }
+.productos-destacados h2 {
+  color: #ff33cc;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 15px #ff33cc;
+}
+.grid-productos {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.grid-productos-3 {grid-template-columns:repeat(3,1fr);}
+@media (max-width: 992px){.grid-productos-3 {grid-template-columns:repeat(2,1fr);} }
+@media (max-width: 600px){.grid-productos-3 {grid-template-columns:1fr;} }
+.producto {
+  background: #1f1f1f;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.producto:hover { box-shadow: 0 0 20px rgba(255, 51, 204, 0.6); transform: scale(1.05); }
+.producto img { border-radius: 8px; margin-bottom: 1rem; max-width: 100%; }
+.producto h3 { margin: 0.5rem 0; }
+.producto button {
+  background: #00ff00 !important;
+  border: none;
+  border-radius: 8px;
+  color: #121212 !important;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+.producto button:hover {
+  background: #00ffcc;
+  box-shadow: 0 0 10px #00ffcc; 
+  color: #121212; 
+}
+
+/* =======================================================================
+   FOOTER BASE SIMPLE (element <footer>)
+   ======================================================================= */
+footer {
+  background-color: #1f1f1f;
+  color: #ffffff;
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* =======================================================================
+   CARRUSEL HERO
+   ======================================================================= */
+.carrusel-hero .carousel-item img { filter: brightness(0.95) saturate(1.05); }
+.carrusel-hero .carousel-item {
+  align-items: center;
+  background: #000;
+  display: flex;
+  height: 320px;
+  justify-content: center;
+}
+.carrusel-hero .hero-banner {
+  border-bottom: 2px solid #00ff00;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: filter 0.4s ease;
+  width: 100%;
+}
+.carrusel-hero .hero-banner-contain { background: #000; object-fit: contain; }
+@media (min-width: 768px) { .carrusel-hero .carousel-item { height: 380px; } }
+@media (min-width: 992px) { .carrusel-hero .carousel-item { height: 460px; } }
+@media (min-width: 1400px) { .carrusel-hero .carousel-item { height: 520px; } }
+.carrusel-hero .carousel-caption { 
+  bottom: 1.5rem; 
+}
+.carrusel-hero .carousel-caption h2 { 
+  font-size: 2.2rem; 
+}
+.carrusel-hero .carousel-caption .banner-cta {
+  display: inline-block;
+  text-decoration: none; 
+}
+.carrusel-hero .banner-cta {
+  background: #00ff00;
+  border-radius: 14px;
+  color: #121212;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: .6rem 1.4rem;
+  text-shadow: none;
+}
+@media (max-width: 768px) { .carrusel-hero .banner-cta { font-size: 1.35rem; padding: .5rem 1rem; } }
+@media (max-width: 768px) {
+  .carrusel-hero .carousel-caption h2 { font-size: 1.5rem; }
+  .carrusel-hero .carousel-caption p { font-size: 0.85rem; }
+}
+
+/* =======================================================================
+   FORMULARIOS (Registro / Login)
+   ======================================================================= */
+.cuadro-registro,
+.cuadrado-login {
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 400px;
+  padding: 2rem;
+}
+.cuadro-registro {
+  background: #1f1f1f;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 20px #00ff0044;
+}
+.cuadrado-login {
+  background: #232323;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 20px #00ffcc44;
+}
+
+/* =======================================================================
+   IMÁGENES CON DESCRIPCIÓN AL HOVER
+   ======================================================================= */
+.img-contenedor { display: inline-block; position: relative; }
+.descripcion-hover {
+  background: rgba(0, 255, 0, 0.95);
+  border-radius: 0 0 8px 8px;
+  bottom: 0;
+  color: #121212;
+  display: none;
+  font-size: 0.9rem;
+  left: 0;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+.img-contenedor:hover .descripcion-hover { display: block; }
+
+/* =======================================================================
+   FOOTER 3 COLUMNAS PERSONALIZADO (.site-footer-3)
+   ======================================================================= */
+.site-footer-3 {
+  background: #1f1f1f;
+  border-top: 1px solid #2e2e2e;
+  padding: 3rem 2rem 1.5rem;
+  width: 100%;
+}
+.site-footer-3 .footer-inner {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+@media (min-width: 1400px) {
+  .site-footer-3 { padding-left: 3rem; padding-right: 3rem; }
+}
+.site-footer-3 .footer-grid {
+  align-items: center;
+  display: grid;
+  gap: 2rem;
+}
+.site-footer-3 .footer-col { text-align: center; }
+@media (min-width: 768px) {
+  .site-footer-3 .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .site-footer-3 .footer-col { text-align: left; }
+  .site-footer-3 .footer-brand { text-align: center; }
+  .site-footer-3 .social-list { justify-content: flex-start; }
+}
+.site-footer-3 .footer-logo { max-width: 180px; width: 100%; }
+.site-footer-3 .footer-title {
+  color: #00ffcc;
+  font: 700 0.95rem/1 Arial, sans-serif;
+  letter-spacing: .05em;
+  margin: 0 0 .8rem;
+  text-transform: uppercase;
+}
+.site-footer-3 .footer-text { color: #e0ffe9; font-size: .9rem; margin: .25rem 0; }
+.site-footer-3 .footer-link {
+  color: #00ff66;
+  font-weight: 600;
+  position: relative;
+  text-decoration: none;
+}
+.site-footer-3 .footer-link::after {
+  background: #00ff66;
+  bottom: -2px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 0;
+}
+.site-footer-3 .footer-link:hover { color: #ffffff; }
+.site-footer-3 .footer-link:hover::after { width: 100%; }
+.site-footer-3 .social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-footer-3 .footer-social { align-items: center; display: flex; flex-direction: column; text-align: center; }
+.site-footer-3 .footer-social .social-list { justify-content: center !important; margin-top: .4rem; }
+.site-footer-3 .social-link {
+  background: linear-gradient(145deg, rgba(0, 255, 200, .08), rgba(0, 0, 0, .25));
+  border: 1px solid #00ffcc55;
+  border-radius: 10px;
+  color: #00ffcc;
+  font-size: .85rem;
+  font-weight: 600;
+  padding: .35rem .55rem;
+  text-decoration: none;
+}
+.site-footer-3 .social-link:hover { background: #00ffcc; border-color: #00ffcc; color: #121212; }
+.site-footer-3 .footer-bottom { border-top: 1px solid #2e2e2e; margin-top: 2.2rem; padding-top: 1.2rem; }
+.site-footer-3 .copyright {
+  color: #88ffbb;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
