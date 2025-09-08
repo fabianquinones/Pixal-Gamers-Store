@@ -316,6 +316,231 @@ footer {
 .img-contenedor:hover .descripcion-hover { display: block; }
 
 /* =======================================================================
+   FORMULARIO DE FILTROS (productos.html)
+   ======================================================================= */
+#formFiltros {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+#formFiltros .campo { display:none; }
+#formFiltros select,
+#formFiltros input[type="text"] {
+  background: #1f1f1f;
+  border: 1px solid #00ff00;
+  border-radius: 8px;
+  color: #e9ffe9;
+  padding: 0.5rem 0.75rem;
+  min-width: 200px;
+  font-size:.9rem;
+  transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+#formFiltros .icono { display:none; }
+#formFiltros input::placeholder { color: #66ff99; }
+#formFiltros button {
+  background: #00ff00;
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .25s ease, box-shadow .25s ease;
+}
+#formFiltros button:hover {
+  background: #00ffcc;
+  box-shadow: 0 0 10px #00ffcc;
+}
+#formFiltros select:focus,
+#formFiltros input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00ff00aa;
+}
+
+/* Mejora estética mínima del bloque de filtros existente */
+.filtros-productos { padding:1.2rem 1rem 0; }
+#formFiltros { /* diseño decorativo removido */ background:transparent; border:none; padding:0; border-radius:0; box-shadow:none; }
+#formFiltros select,#formFiltros input[type="text"] { backdrop-filter:blur(4px); }
+
+/* (Se removieron estilos avanzados de chips) */
+
+/* (Se removieron estilos de sugerencias) */
+
+/* Responsivo filtros */
+/* Adaptación responsive simple */
+@media (max-width:600px){
+  #formFiltros { flex-direction:column; }
+  #formFiltros select,#formFiltros input[type="text"],#formFiltros button { width:100%; }
+}
+
+/* =======================================================================
+   FORMULARIO LOGIN (estético sin animaciones)
+   ======================================================================= */
+.formulario.cuadrado-login {
+  max-width: 430px;
+  width: 100%;
+  margin: 3rem auto 2rem;
+  background: linear-gradient(145deg,#1f1f1f,#181f1a);
+  border: 1px solid #00ff00;
+  box-shadow: 0 0 0 1px #00ff0066, 0 0 22px -6px #00ff00;
+  padding: 2.2rem 2rem 2rem;
+}
+.formulario.cuadrado-login h2 {
+  margin: 0 0 1.4rem;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: #00ffcc;
+  text-align: center;
+  text-shadow: 0 0 6px #00ffcc55;
+  border-bottom: 1px solid #00ff0022;
+  padding-bottom: .8rem;
+}
+.formulario.cuadrado-login .campo { display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.1rem; }
+.formulario.cuadrado-login label { font-size:.75rem; letter-spacing:.08em; font-weight:600; text-transform:uppercase; color:#66ff99; }
+.formulario.cuadrado-login input[type="text"],
+.formulario.cuadrado-login input[type="password"] {
+  background:#181818;
+  border:1px solid #00ff00;
+  border-radius:10px;
+  padding:.65rem .85rem;
+  color:#e9ffe9;
+  font-size:.95rem;
+  font-family:inherit;
+  outline:none;
+  width:100%;
+}
+.formulario.cuadrado-login input[type="text"]:focus,
+.formulario.cuadrado-login input[type="password"]:focus { border-color:#00ffcc; box-shadow:0 0 0 2px #00ffcc44; }
+.formulario.cuadrado-login input::placeholder { color:#55ffaa; opacity:.75; }
+
+.formulario.cuadrado-login .acciones { margin-top:.5rem; text-align:center; }
+.formulario.cuadrado-login .btn-primario {
+  background:#00ff00;
+  border:none;
+  color:#121212;
+  font-weight:700;
+  letter-spacing:.04em;
+  padding:.7rem 1.4rem;
+  border-radius:10px;
+  font-size:.95rem;
+  cursor:pointer;
+}
+.formulario.cuadrado-login .btn-primario:focus,
+.formulario.cuadrado-login .btn-primario:hover { background:#00ffcc; color:#121212; }
+
+.formulario.cuadrado-login .enlace-registro { color:#00ffaa; text-decoration:none; font-weight:600; }
+.formulario.cuadrado-login .enlace-registro:hover { text-decoration:underline; color:#ffffff; }
+
+/* Quitar transiciones / animaciones en el ámbito del login */
+#formLogin * { transition:none !important; animation:none !important; }
+
+@media (max-width:520px){
+  .formulario.cuadrado-login { margin:2.2rem 1rem; padding:1.7rem 1.2rem 1.4rem; }
+  .formulario.cuadrado-login h2 { font-size:1.35rem; }
+}
+
+/* =======================================================================
+   FORMULARIO REGISTRO (estético sin animaciones)
+   ======================================================================= */
+.formulario.cuadro-registro {
+  max-width: 560px;
+  width: 100%;
+  margin: 3rem auto 2.5rem;
+  background: linear-gradient(145deg,#202220,#181a19 60%);
+  border: 1px solid #00ff00;
+  box-shadow: 0 0 0 1px #00ff0060, 0 0 26px -6px #00ff00;
+  padding: 2.4rem 2.2rem 2.2rem;
+}
+.formulario.cuadro-registro h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.65rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: .025em;
+  color: #00ffbb;
+  text-align: center;
+  text-shadow: 0 0 6px #00ffbb55;
+  border-bottom: 1px solid #00ff0033;
+  padding-bottom: .85rem;
+}
+.formulario.cuadro-registro form { display:flex; flex-direction:column; gap:1.05rem; }
+.formulario.cuadro-registro form .campo { display:flex; flex-direction:column; gap:.45rem; margin:0; width:100%; }
+.formulario.cuadro-registro label { font-size:.7rem; letter-spacing:.08em; font-weight:600; text-transform:uppercase; color:#66ff99; }
+.formulario.cuadro-registro input[type="text"],
+.formulario.cuadro-registro input[type="password"],
+.formulario.cuadro-registro input[type="email"],
+.formulario.cuadro-registro input[type="tel"],
+.formulario.cuadro-registro select {
+  background:#181818;
+  border:1px solid #00ff00;
+  border-radius:10px;
+  padding:.65rem .85rem;
+  color:#e9ffe9;
+  font-size:.92rem;
+  font-family:inherit;
+  outline:none;
+  width:100%;
+}
+.formulario.cuadro-registro textarea#mensaje {
+  background:#181818;
+  border:1px solid #00ff00;
+  border-radius:12px;
+  padding:.75rem .9rem;
+  color:#e9ffe9;
+  font-size:.95rem;
+  line-height:1.35;
+  resize:vertical;
+  min-height:160px;
+  max-height:340px;
+  font-family:inherit;
+  outline:none;
+}
+.formulario.cuadro-registro textarea#mensaje:focus { border-color:#00ffcc; box-shadow:0 0 0 2px #00ffcc44; }
+.formulario.cuadro-registro textarea#mensaje::placeholder { color:#55ffaa; opacity:.55; }
+.formulario.cuadro-registro select { cursor:pointer; }
+.formulario.cuadro-registro input:focus,
+.formulario.cuadro-registro select:focus { border-color:#00ffcc; box-shadow:0 0 0 2px #00ffcc44; }
+.formulario.cuadro-registro input::placeholder { color:#55ffaa; opacity:.7; }
+.formulario.cuadro-registro input[type="checkbox"] { width:auto; margin-right:.45rem; accent-color:#00ff88; }
+
+.formulario.cuadro-registro button[type="submit"],
+.formulario.cuadro-registro .btn-primario {
+  background:#00ff00;
+  border:none;
+  color:#121212;
+  font-weight:700;
+  letter-spacing:.04em;
+  padding:.75rem 1.45rem;
+  border-radius:10px;
+  font-size:.95rem;
+  cursor:pointer;
+  width:100%;
+}
+.formulario.cuadro-registro button[type="submit"]:hover,
+.formulario.cuadro-registro .btn-primario:hover { background:#00ffcc; color:#121212; }
+.formulario.cuadro-registro .acciones { text-align:center; margin-top:1.6rem; }
+.formulario.cuadro-registro .acciones p { margin:.2rem 0 .6rem; color:#ccffe6; font-size:.85rem; }
+
+/* Quitar transiciones / animaciones en el ámbito del registro */
+#formRegistro * { transition:none !important; animation:none !important; }
+
+@media (max-width:760px){
+  .formulario.cuadro-registro form { grid-template-columns:1fr; }
+  .formulario.cuadro-registro { margin:2.4rem 1rem; padding:2rem 1.3rem 1.7rem; }
+  .formulario.cuadro-registro h2 { font-size:1.45rem; }
+  .formulario.cuadro-registro button[type="submit"] { margin-top:.3rem; }
+}
+
+/* Ajustes específicos formulario de contacto */
+#formContacto .campo:nth-child(2) { margin-bottom:1.6rem; }
+#formContacto .campo:nth-child(3) textarea { min-height:190px; }
+#formContacto .campo:last-child { margin-top:1.3rem; }
+
+/* =======================================================================
    FOOTER 3 COLUMNAS PERSONALIZADO (.site-footer-3)
    ======================================================================= */
 .site-footer-3 {

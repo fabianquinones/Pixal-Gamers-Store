@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Productos - Pixal & Gamers Store</title>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Hoja de estilos propia (unificar si existe otra en /assents) -->
   <link rel="stylesheet" href="css/Style.css">
     <link rel="icon" href="images/LogoV2.png" type="image/png">
 </head>
 <body>
   <header>
+    <!-- Barra de navegación principal del sitio -->
     <nav class="navbar navbar-expand-lg navbar-custom w-100 full-bleed">
       <div class="container-fluid px-0">
         <div class="navbar-brand d-flex align-items-center no-click">
@@ -21,6 +25,7 @@
         </button>
         <div class="collapse navbar-collapse" id="menuPrincipal">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- Actualizar los enlaces si cambian los nombres de archivo -->
             <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="productos.html">Productos</a></li>
             <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
@@ -34,8 +39,9 @@
   </header>
 
   <main>
+    <!-- Sección de filtros (actualmente sin lógica JS asociada dentro de esta página) -->
     <section class="filtros-productos">
-      <form id="formFiltros" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
+  <form id="formFiltros">
         <select name="categoria" id="categoria">
           <option value="">Todas las categorías</option>
           <option value="perifericos">Periféricos</option>
@@ -43,13 +49,15 @@
           <option value="monitores">Monitores</option>
           <option value="juegos">Juegos</option>
         </select>
-        <input type="text" id="buscador" name="buscador" placeholder="Buscar producto..." style="padding: 0.5rem; border-radius: 8px; border: 1px solid #00ff00;">
-        <button type="submit" style="background: #00ff00; color: #121212; border: none; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer;">Buscar</button>
+  <input type="text" id="buscador" name="buscador" placeholder="Buscar producto...">
+  <button type="submit">Buscar</button>
       </form>
     </section>
     <section class="lista-productos">
       <h2>Todos los Productos</h2>
+      <!-- Contenedor tipo grid. Cada .producto es una tarjeta individual -->
       <div class="grid-productos">
+        <!-- Ejemplo de bloque de producto con enlace a detalle -->
         <div class="producto">
           <div class="img-contenedor">
             <a href="detalle-mouse.html">
@@ -61,6 +69,7 @@
           <p>$19.990</p>
           <button>Añadir al carrito</button>
         </div>
+        <!-- Repetir la estructura adaptando datos del producto -->
         <div class="producto">
           <div class="img-contenedor">
             <a href="detalle-teclado.html">
@@ -169,6 +178,7 @@
           <button>Añadir al carrito</button>
         </div>
       </div>
+      <!-- Paginación estática (ajustar links y texto al agregar más páginas) -->
       <div class="paginacion" style="text-align:center; margin-top:2rem;">
         <a href="productos.html?page=1"><button style="background: #00ff00; color: #121212; border: none; border-radius: 8px; padding: 0.5rem 1rem; margin: 0 0.5rem; cursor: pointer;">&lt; Anterior</button></a>
         <span>Página 1 de 3</span>
@@ -178,6 +188,7 @@
   </main>
 
   <footer class="site-footer-3 mt-5">
+    <!-- Footer con logo, datos de contacto y redes sociales -->
     <div class="footer-inner">
       <div class="footer-grid">
         <div class="footer-col footer-brand">
@@ -203,6 +214,8 @@
       </div>
     </div>
   </footer>
+  <!-- Bootstrap JS bundle (incluye Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- Aquí podría añadirse un script propio para filtrar productos dinámicamente -->
 </body>
 </html>
