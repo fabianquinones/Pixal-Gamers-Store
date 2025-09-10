@@ -535,11 +535,6 @@ footer {
   .formulario.cuadro-registro button[type="submit"] { margin-top:.3rem; }
 }
 
-/* Ajustes específicos formulario de contacto */
-#formContacto .campo:nth-child(2) { margin-bottom:1.6rem; }
-#formContacto .campo:nth-child(3) textarea { min-height:190px; }
-#formContacto .campo:last-child { margin-top:1.3rem; }
-
 /* =======================================================================
    FOOTER 3 COLUMNAS PERSONALIZADO (.site-footer-3)
    ======================================================================= */
