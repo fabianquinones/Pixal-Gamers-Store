@@ -590,6 +590,102 @@ footer {
 }
 
 /* =======================================================================
+<<<<<<< HEAD
+   PÁGINA NOSOTROS - ESTILOS SIMPLES
+   ======================================================================= */
+
+/* Logo central */
+.logo-central {
+  filter: drop-shadow(0 0 15px rgba(0, 255, 200, 0.3));
+}
+
+/* Título principal */
+.nosotros h1 {
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+/* Secciones de historia */
+.historia-empresa h3 {
+  color: #00ffcc;
+  margin-bottom: 1rem;
+}
+
+/* Párrafos con mejor espaciado */
+.historia-empresa p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+/* Cajas de misión y visión */
+.mision-vision-box {
+  background: rgba(0, 255, 200, 0.1);
+  border: 2px solid rgba(0, 255, 200, 0.3);
+  border-radius: 15px;
+}
+
+.mision-box {
+  background: rgba(2, 65, 51, 0.08) !important;
+  border-color: rgba(0, 255, 200, 0.4) !important;
+}
+
+.vision-box {
+  background: rgba(0, 255, 200, 0.2) !important;
+  border-color: #00ffcc !important;
+}
+
+.vision-box h3,
+.vision-box p {
+  color: #ffffff !important;
+}
+
+/* Títulos de sección */
+.historia-empresa h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.historia-empresa h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #00ffcc;
+  border-radius: 2px;
+}
+
+/* Secciones de año */
+.year-section {
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+  border-left: 4px solid rgba(0, 255, 200, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .historia-empresa h2 {
+    font-size: 2rem;
+  }
+  
+  .year-section {
+    padding: 1.5rem;
+  }
+  
+  .logo-central {
+    max-width: 200px !important;
+  }
+}
+
+/* =======================================================================
    FAQ
    ======================================================================= */
 .faq {
