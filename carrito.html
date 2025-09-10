@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
+  <!-- HEADER -->
+  <header style="background:#121212;padding:1.2rem 0;text-align:center;border-radius:0 0 12px 12px;box-shadow:0 2px 8px #00ff0022;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:1rem;">
+      <img src="Images/bitmap.png" alt="Logo Pixel & Gamers Store" style="height:48px;width:auto;vertical-align:middle;">
+      <h1 style="color:#00ff00;font-size:2rem;margin:0;font-family:'Segoe UI',sans-serif;letter-spacing:1px;">
+        Pixel & Gamers Store
+      </h1>
+    </div>
+    <nav style="margin-top:0.5rem;">
+      <a href="index.html" style="color:#fff;margin:0 1rem;text-decoration:none;font-weight:500;">Inicio</a>
+      <a href="productos.html" style="color:#fff;margin:0 1rem;text-decoration:none;font-weight:500;">Productos</a>
+      <a href="carrito.html" style="color:#00ff00;margin:0 1rem;text-decoration:none;font-weight:700;">Carrito</a>
+    </nav>
+  </header>
   <main class="carrito-page" style="max-width:600px;margin:2rem auto;padding:2rem;background:#181818;border-radius:16px;box-shadow:0 0 20px #00ff0044;">
     <a href="index.html" style="display:inline-block;margin-bottom:1.2rem;color:#00ff00;font-size:1.3rem;text-decoration:none;font-weight:bold;"><span style="font-size:1.5rem;vertical-align:middle;">&#8592;</span> Volver</a>
     <h2 style="color:#00ff00;text-align:center;margin-bottom:2rem;">Carrito de Compras</h2>
@@ -32,6 +46,36 @@
     <button id="btnComprar" style="width:100%;background:#00ff00;color:#121212;font-weight:700;padding:0.8rem 0;border:none;border-radius:8px;font-size:1.1rem;cursor:pointer;">Finalizar compra</button>
     <div id="mensajeCompra" style="display:none;margin-top:1.5rem;color:#00ff00;text-align:center;font-size:1.1rem;"></div>
   </main>
+  <!-- Footer 3-column -->
+  <footer class="site-footer-3 mt-5">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <!-- Col 1: Logo / Marca -->
+        <div class="footer-col footer-brand">
+          <img src="images/bitmap.png" alt="Pixel & Gamers Store" class="footer-logo" loading="lazy" width="180" height="auto">
+        </div>
+        <!-- Col 2: Contacto -->
+        <div class="footer-col footer-contacto">
+          <h3 class="footer-title">Contacto</h3>
+          <p class="footer-text">¿Preguntas o comentarios?</p>
+          <p class="footer-text">Escríbenos: <a href="mailto:contacto@pixelgamers.store" class="footer-link">contacto@pixelgamers.store</a></p>
+          <p class="footer-text">O llámanos: <a href="tel:+56912345678" class="footer-link">+56 9 1234 5678</a></p>
+        </div>
+        <!-- Col 3: Redes Sociales -->
+        <div class="footer-col footer-social">
+          <h3 class="footer-title">Síguenos en redes sociales</h3>
+          <ul class="social-list">
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">Facebook</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">Instagram</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 Pixel & Gamers Store</p>
+      </div>
+    </div>
+  </footer>
   <script>
     document.getElementById('btnComprar').onclick = function() {
       document.getElementById('mensajeCompra').style.display = 'block';
