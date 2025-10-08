@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras - Pixel & Gamers Store</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+  <main class="carrito-page" style="max-width:600px;margin:2rem auto;padding:2rem;background:#181818;border-radius:16px;box-shadow:0 0 20px #00ff0044;">
+    <a href="index.html" style="display:inline-block;margin-bottom:1.2rem;color:#00ff00;font-size:1.3rem;text-decoration:none;font-weight:bold;"><span style="font-size:1.5rem;vertical-align:middle;">&#8592;</span> Volver</a>
+    <h2 style="color:#00ff00;text-align:center;margin-bottom:2rem;">Carrito de Compras</h2>
+    <div class="carrito-lista">
+      <div class="carrito-item" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <span>Videojuego: Super Pixel Bros</span>
+        <span>$19.990</span>
+      </div>
+      <div class="carrito-item" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <span>Mouse Gamer RGB</span>
+        <span>$12.990</span>
+      </div>
+      <div class="carrito-item" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <span>Figura Coleccionable</span>
+        <span>$8.990</span>
+      </div>
+    </div>
+    <hr style="border-color:#00ff00;">
+    <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:1.2rem;margin:1.2rem 0;">
+      <span>Total:</span>
+      <span>$41.970</span>
+    </div>
+    <button id="btnComprar" style="width:100%;background:#00ff00;color:#121212;font-weight:700;padding:0.8rem 0;border:none;border-radius:8px;font-size:1.1rem;cursor:pointer;">Finalizar compra</button>
+    <div id="mensajeCompra" style="display:none;margin-top:1.5rem;color:#00ff00;text-align:center;font-size:1.1rem;"></div>
+  </main>
+  <script>
+    document.getElementById('btnComprar').onclick = function() {
+      document.getElementById('mensajeCompra').style.display = 'block';
+      document.getElementById('mensajeCompra').textContent = '¡Gracias por tu compra! Pronto recibirás un correo con los detalles.';
+    };
+  </script>
+</body>
+</html>
