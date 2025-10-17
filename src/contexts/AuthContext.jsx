@@ -32,12 +32,10 @@ export function AuthProvider({ children }) {
 
 
     const isValidEmail = (em) => {
-        // simple email regex
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)
     }
 
     const isValidPhone = (tel) => {
-        // allow digits, spaces, +, -, parentheses; length between 7 and 15
         return /^[+0-9\s\-()]{7,15}$/.test(tel)
     }
 
@@ -60,21 +58,27 @@ export function AuthProvider({ children }) {
         const exists = users.some(u => u.email.toLowerCase() === email.toLowerCase())
         if (exists) { throw new Error('El correo ya está en uso.') }
 
-        const newUser = { id: crypto.randomUUID(), nombre, apellido, email, password, telefono }
+        // Determinar tipo de usuario
+        let tipo = 'user';
+        if (email.endsWith('@duocuc.cl')) {
+            tipo = 'admin';
+        }
+        const newUser = { id: crypto.randomUUID(), nombre, apellido, email, password, telefono, tipo }
         users.push(newUser)
         saveUsers(users)
-        return { id: newUser.id, nombre, apellido, email, telefono }
+        return { id: newUser.id, nombre, apellido, email, telefono, tipo }
     }
 
 
     const login = ({ email, password }) => {
-        const users = getUsers()
-        const match = users.find(u => u.email === email && u.password === password)
-        if (!match) { throw new Error('Usuario o contraseña inválidos.') }
-        const sessionUser = { id: match.id, nombre: match.nombre, apellido: match.apellido, email: match.email }
-        setUser(sessionUser)
-        localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser))
-        return sessionUser
+    const users = getUsers()
+    const match = users.find(u => u.email === email && u.password === password)
+    if (!match) { throw new Error('Usuario o contraseña inválidos.') }
+    const tipo = match.tipo || (email.endsWith('@duocuc.cl') ? 'admin' : 'user');
+    const sessionUser = { id: match.id, nombre: match.nombre, apellido: match.apellido, email: match.email, tipo }
+    setUser(sessionUser)
+    localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser))
+    return sessionUser
     }
 
 
@@ -84,6 +88,15 @@ export function AuthProvider({ children }) {
     }
 
 
-    const value = { user, register, login, logout }
+    // Mostrar nombre con tipo si es admin
+    const getDisplayName = () => {
+        if (!user) return '';
+        if (user.tipo === 'admin') {
+            return `admin: ${user.nombre}`;
+        }
+        return user.nombre;
+    }
+
+    const value = { user, register, login, logout, getDisplayName }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
