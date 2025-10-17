@@ -1,0 +1,97 @@
+/* Links verdes personalizados para el footer */
+.footer-green-link {
+  color: #00ff00 !important;
+  text-decoration: underline;
+}
+.footer-green-link:hover {
+  color: #00cc00 !important;
+}
+
+/* Quitar borde negro de los ListGroup.Item */
+.footer-listgroup-item {
+  border: none !important;
+}
+.site-footer-3 {
+  background: #222;
+  color: #fff;
+  padding: 40px 0 0 0;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-col {
+  flex: 1 1 0;
+  min-width: 220px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-text {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-link:hover {
+  color: #ffc107;
+}
+
+.footer-social {
+  margin-top: 10px;
+}
+
+.social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-link {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+.social-link:hover {
+  color: #ffc107;
+}
+
+.footer-bottom {
+  margin-top: 32px;
+  padding: 16px 0;
+}
+
+.copyright {
+  font-size: 0.95rem;
+  color: #bbb;
+}
