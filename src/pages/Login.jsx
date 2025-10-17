@@ -42,12 +42,12 @@ export default function Login() {
                       {error && <Alert variant="danger">{error}</Alert>}
                       <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Correo</Form.Label>
-                          <Form.Control value={email} onChange={e => setEmail(e.target.value)} placeholder="correo@ejemplo.com" type="email" required />
+                          <Form.Label htmlFor="email">Correo</Form.Label>
+                          <Form.Control id="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="correo@ejemplo.com" type="email" required />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                          <Form.Label>Contraseña</Form.Label>
-                          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required />
+                          <Form.Label htmlFor="password">Contraseña</Form.Label>
+                          <Form.Control id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required />
                         </Form.Group>
                         <div className="d-grid gap-2">
                           <Button type="submit" disabled={loading}>{loading ? 'Ingresando…' : 'Ingresar'}</Button>
