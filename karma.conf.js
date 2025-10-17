@@ -11,7 +11,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/**/*.test.js',
-      'src/**/*.spec.js'
+      'src/**/*.spec.js',
+      { pattern: 'tests/**/*.js', type: 'module' }
     ],
 
     // list of files / patterns to exclude
@@ -19,7 +20,14 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'src/**/*.js': ['webpack'],
+      'src/**/*.jsx': ['webpack'],
+      'tests/**/*.js': ['webpack'],
+      'tests/**/*.jsx': ['webpack']
+    },
+    // Webpack config for React/ES6
+    webpack: require('./webpack.karma.config'),
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -47,7 +55,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-    browsers: ['Chrome'],
+  browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
