@@ -10,7 +10,7 @@ function ProductCard({ product }) {
   const description = descripcion;
   const navegador = useNavigate();
   const redirigirProducto = () => {
-    navegador(`/detalle_producto/${id}`);
+    navegador(`/DetalleProducto/${id}`);
   };
 
   return (

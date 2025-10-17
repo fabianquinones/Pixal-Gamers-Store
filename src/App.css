@@ -70,6 +70,42 @@
   }
   to {
     transform: rotate(360deg);
+  
+  .formulario.cuadrado-login .form-control::placeholder { color: #66ff99; opacity: .7; }
+
+  .formulario.cuadrado-login .form-control:focus {
+    border-color: #00ffcc;
+    box-shadow: 0 0 14px rgba(0,255,204,0.12);
+    outline: none;
+  }
+
+  /* Center and size the submit button to match image 2 */
+  .formulario.cuadrado-login .d-grid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .formulario.cuadrado-login .btn {
+    background: linear-gradient(180deg,#00ff66,#00ff00);
+    color: #0b0b0b;
+    border: 1px solid rgba(0,255,0,0.15);
+    padding: .55rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 160px;
+    box-shadow: 0 6px 18px rgba(0,255,0,0.08);
+  }
+
+  /* Inputs full width on mobile and normal stack behavior */
+  .formulario.cuadrado-login .row > .col-md-10,
+  .formulario.cuadrado-login .row > .col-lg-8 { width:100%; }
+
+  /* Slight inner separator like in image 2 */
+  .formulario.cuadrado-login hr { border-color: rgba(0,255,0,0.06); }
+
+  /* Make links neon green */
+  .formulario.cuadrado-login a { color: #00ff66; font-weight: 700; }
+
   }
 }
 /* Strong color overrides to ensure theme colors apply over Bootstrap */
@@ -480,9 +516,10 @@ footer {
   max-width: 430px;
   width: 100%;
   margin: 3rem auto 2rem;
-  background: linear-gradient(145deg,#1f1f1f,#181f1a);
-  border: 1px solid #00ff00;
-  box-shadow: 0 0 0 1px #00ff0066, 0 0 22px -6px #00ff00;
+  /* usar los mismos colores y sombras que el registro */
+  background: linear-gradient(145deg,#202220,#181a19 60%) !important;
+  border: 1px solid #00ff00 !important;
+  box-shadow: 0 0 0 1px #00ff0060, 0 0 26px -6px #00ff00 !important;
   padding: 2.2rem 2rem 2rem;
 }
 .formulario.cuadrado-login h2 {
@@ -501,6 +538,17 @@ footer {
 .formulario.cuadrado-login label { font-size:.75rem; letter-spacing:.08em; font-weight:600; text-transform:uppercase; color:#66ff99; }
 .formulario.cuadrado-login input[type="text"],
 .formulario.cuadrado-login input[type="password"] {
+  background:#181818;
+  border:1px solid #00ff00;
+  border-radius:10px;
+  padding:.65rem .85rem;
+  color:#e9ffe9;
+  font-size:.95rem;
+  font-family:inherit;
+  outline:none;
+  width:100%;
+}
+.formulario.cuadrado-login input[type="email"] {
   background:#181818;
   border:1px solid #00ff00;
   border-radius:10px;
@@ -532,6 +580,7 @@ footer {
 
 .formulario.cuadrado-login .enlace-registro { color:#00ffaa; text-decoration:none; font-weight:600; }
 .formulario.cuadrado-login .enlace-registro:hover { text-decoration:underline; color:#ffffff; }
+.formulario.cuadrado-login p.mb-0 { color: #fff; }
 
 /* Quitar transiciones / animaciones en el ámbito del login */
 #formLogin * { transition:none !important; animation:none !important; }
@@ -545,13 +594,15 @@ footer {
    FORMULARIO REGISTRO (estético sin animaciones)
    ======================================================================= */
 .formulario.cuadro-registro {
-  max-width: 560px;
+  max-width: 700px;
+  min-width: 400px;
   width: 100%;
   margin: 3rem auto 2.5rem;
   background: linear-gradient(145deg,#202220,#181a19 60%);
-  border: 1px solid #00ff00;
+  border: 1.5px solid #00ff00;
+  border-radius: 18px;
   box-shadow: 0 0 0 1px #00ff0060, 0 0 26px -6px #00ff00;
-  padding: 2.4rem 2.2rem 2.2rem;
+  padding: 2.2rem 2rem 2rem;
 }
 .formulario.cuadro-registro h2 {
   margin: 0 0 1.5rem;
@@ -575,7 +626,7 @@ footer {
 .formulario.cuadro-registro select {
   background:#181818;
   border:1px solid #00ff00;
-  border-radius:10px;
+  border-radius:4px;
   padding:.65rem .85rem;
   color:#e9ffe9;
   font-size:.92rem;
@@ -620,8 +671,26 @@ footer {
 }
 .formulario.cuadro-registro button[type="submit"]:hover,
 .formulario.cuadro-registro .btn-primario:hover { background:#00ffcc; color:#121212; }
-.formulario.cuadro-registro .acciones { text-align:center; margin-top:1.6rem; }
-.formulario.cuadro-registro .acciones p { margin:.2rem 0 .6rem; color:#ccffe6; font-size:.85rem; }
+.formulario.cuadro-registro .acciones {
+  text-align:center;
+  margin-top:1.6rem;
+  border-top: 1.5px solid rgba(0,255,0,0.13);
+  padding-top: 1.2rem;
+}
+.formulario.cuadro-registro .acciones p {
+  margin:.2rem 0 .6rem;
+  color:#fff;
+  font-size:.95rem;
+}
+.formulario.cuadro-registro .acciones a {
+  color:#00eaff;
+  font-weight:600;
+  text-decoration:none;
+}
+.formulario.cuadro-registro .acciones a:hover {
+  text-decoration:underline;
+  color:#fff;
+}
 
 /* Quitar transiciones / animaciones en el ámbito del registro */
 #formRegistro * { transition:none !important; animation:none !important; }
@@ -971,6 +1040,45 @@ footer {
   display: block;
   margin-bottom: 0.7rem;
 }
+
+/* Stronger overrides to ensure register matches login appearance */
+section.formulario.cuadro-registro {
+  background: linear-gradient(180deg,#0f0f0f,#131313) !important;
+  border: 2px solid #00ff00 !important;
+  box-shadow: 0 14px 48px rgba(0,255,0,0.08), inset 0 0 28px rgba(0,255,0,0.04) !important;
+}
+
+section.formulario.cuadro-registro .register-inner,
+section.formulario.cuadro-registro .register-inner .card-body {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Inputs */
+section.formulario.cuadro-registro .form-control {
+  background: transparent !important;
+  border: 1.6px solid #00ff00 !important;
+  color: #e9ffe9 !important;
+  border-radius: 8px !important;
+  padding: .65rem .85rem !important;
+}
+
+section.formulario.cuadro-registro .form-control:focus {
+  border-color: #00ffcc !important;
+  box-shadow: 0 0 14px rgba(0,255,204,0.12) !important;
+}
+
+/* Button */
+section.formulario.cuadro-registro .btn {
+  background: linear-gradient(180deg,#00ff66,#00ff00) !important;
+  color: #0b0b0b !important;
+  border: 1px solid rgba(0,255,0,0.15) !important;
+  width: 160px !important;
+  margin: 0 auto !important;
+}
+
+/* Links */
+section.formulario.cuadro-registro a { color: #00ff66 !important; font-weight:700 !important; }
 .valor-card:hover {
   transform: scale(1.05);
   box-shadow: 0 0 24px #00ff00;
@@ -1039,4 +1147,195 @@ footer {
   font-weight: bold;
   margin-top: 1.2rem;
   align-self: stretch;
+}
+
+/* Estilos para la página de carrito */
+
+:root{
+
+  --bg: var(--pgs-bg, #121212);
+  --card: #1f1f1f; 
+  --text: #e0ffe9; 
+  --muted: #88ffbb; 
+  --accent: var(--pgs-accent, #00ff00); 
+  --accent-2: var(--pgs-accent-2, #00ffcc);
+  --danger: #ff6969;
+  --border: rgba(0,255,0,0.12);
+  --radius: 12px;
+}
+
+.carrito-page{
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.carrito-main{
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.carrito-card{
+  border: 1px solid var(--accent);
+  box-shadow:
+    0 8px 24px rgba(0,255,0,0.04),
+    0 0 18px rgba(0,255,0,0.06);
+  background: var(--card);
+  width: 100%;
+  max-width: 980px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,255,0,0.04), 0 2px 6px rgba(0,0,0,0.5);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.carrito-heading{
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  text-shadow: 0 0 10px rgba(0,255,204,0.06);
+}
+
+.carrito-content{
+  min-height: 120px;
+  margin-bottom: 16px;
+}
+
+.carrito-empty{
+  border: 2px dashed var(--accent);
+  box-shadow: 0 8px 28px rgba(0,255,0,0.03);
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  border: 2px dashed rgba(0,255,0,0.06);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0,255,0,0.02), transparent);
+}
+
+.carrito-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carrito-item{
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,255,0,0.12);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(0,255,0,0.02);
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.carrito-item-left{ flex: 1; }
+.carrito-title{ font-weight: 700; color: var(--text); }
+.carrito-muted{ color: var(--muted); font-size: 0.9rem; margin-top:4px; }
+
+.carrito-item-right{
+  width: 220px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.carrito-price{ color: var(--accent); font-weight:800; }
+
+.carrito-qty{ display:flex; gap:8px; align-items:center; }
+.carrito-qty button{
+  padding:6px 8px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: var(--text);
+  transition: box-shadow .08s ease, border-color .08s ease;
+  cursor:pointer;
+}
+.carrito-qty button:hover{
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0,255,0,0.05);
+}
+.carrito-qty-number{ min-width:28px; text-align:center; display:inline-block; color:var(--text); }
+
+.btn-remove{
+  margin-left:8px;
+  background:transparent;
+  border:none;
+  color:var(--danger);
+  cursor:pointer;
+  font-weight:700;
+}
+
+.carrito-summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:12px;
+  gap:12px;
+}
+
+.carrito-actions{ display:flex; gap:8px; }
+
+.btn-primary,
+.btn-secondary{
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform .06s ease, box-shadow .06s ease;
+}
+
+.btn-primary{
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 22px rgba(0,255,0,0.12), 0 0 18px rgba(0,255,0,0.06);
+  background: linear-gradient(180deg, var(--accent), #0f8f25);
+  color: #121212;
+}
+
+.btn-primary:active{ transform: translateY(1px); }
+
+.btn-secondary{
+  border: 1px solid rgba(0,255,0,0.08);
+  background: transparent;
+  color: var(--text);
+}
+
+.btn-secondary:disabled{
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.carrito-form{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.carrito-form input{
+  border: 1px solid rgba(0,255,0,0.12);
+  background: #141414;
+  color: var(--text);
+  padding: 8px;
+  border-radius: 8px;
+  transition: box-shadow .12s ease, border-color .12s ease;
+}
+
+.carrito-form input:focus{
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 18px rgba(0,255,204,0.10);
 }

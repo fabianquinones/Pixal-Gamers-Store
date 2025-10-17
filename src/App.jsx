@@ -8,9 +8,8 @@ import Productos from './pages/Productos';
 import Registro from './pages/Registro';
 import Login from './pages/Login';
 import Nosotros from './pages/Nosotros';
-import DetalleMouse from './pages/DetalleMouse';
-import DetalleTeclado from './pages/DetalleTeclado';
-import DetalleSilksong from './pages/DetalleSilksong';
+import DetalleProducto from './pages/DetalleProducto';
+
 
 
 
@@ -25,10 +24,8 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Registro" element={<Registro />} />
         <Route path="/Nosotros" element={<Nosotros />} />
-        <Route path="/Mouse" element={<DetalleMouse />} />
-        <Route path="/Teclado" element={<DetalleTeclado />} />
-        <Route path="/Silksong" element={<DetalleSilksong />} />
-
+        <Route path="/DetalleProducto/:id" element={<DetalleProducto />} />
+        
         
         
       </Routes>
