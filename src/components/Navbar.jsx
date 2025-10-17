@@ -1,7 +1,7 @@
 import React from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./Navbar.css";
-import { useAuth } from '../contexts/AuthContext';
 
 function CustomNavbar() {
   const { user, getDisplayName, logout } = useAuth();
@@ -26,11 +26,25 @@ function CustomNavbar() {
                 <Nav.Link href="/">Inicio</Nav.Link>
                 <Nav.Link href="/productos">Productos</Nav.Link>
                 <Nav.Link href="/carrito">Carrito</Nav.Link>
-                {!user && <Nav.Link href="/login">Login</Nav.Link>}
-                {!user && <Nav.Link href="/registro">Registro</Nav.Link>}
                 <Nav.Link href="/nosotros">Nosotros</Nav.Link>
                 <Nav.Link href="/contacto">Contacto</Nav.Link>
-              </Nav>
+                 {!user && (
+                   <>
+                     <Nav.Link href="/login">Login</Nav.Link>
+                     <Nav.Link href="/registro">Registro</Nav.Link>
+                   </>
+                 )}
+                 {user && (
+                   <>
+                     <Nav.Link disabled style={{ color: '#888' }}>
+                       {user.nombre ? `Hola, ${user.nombre}` : user.email}
+                     </Nav.Link>
+                     <Nav.Link onClick={logout} style={{ color: 'red', cursor: 'pointer' }}>
+                       Logout
+                     </Nav.Link>
+                   </>
+                 )}
+               </Nav>
               {user && (
                 <div className="navbar-user-info">
                   <span>{getDisplayName()}</span>
