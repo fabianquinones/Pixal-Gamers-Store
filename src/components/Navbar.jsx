@@ -1,10 +1,12 @@
 import React from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./Navbar.css";
 
 function CustomNavbar() {
+  const { user, logout } = useAuth();
   return (
-  <Navbar expand="lg" className="bg-body-tertiary navbar-main">
+    <Navbar expand="lg" className="bg-body-tertiary navbar-main">
       <Container fluid className="navbar-container">
         <div className="navbar-flex">
           <div className="navbar-brand-flex">
@@ -24,10 +26,24 @@ function CustomNavbar() {
                 <Nav.Link href="/">Inicio</Nav.Link>
                 <Nav.Link href="/productos">Productos</Nav.Link>
                 <Nav.Link href="/carrito">Carrito</Nav.Link>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/registro">Registro</Nav.Link>
                 <Nav.Link href="/nosotros">Nosotros</Nav.Link>
                 <Nav.Link href="/contacto">Contacto</Nav.Link>
+                {!user && (
+                  <>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/registro">Registro</Nav.Link>
+                  </>
+                )}
+                {user && (
+                  <>
+                    <Nav.Link disabled style={{ color: '#888' }}>
+                      {user.nombre ? `Hola, ${user.nombre}` : user.email}
+                    </Nav.Link>
+                    <Nav.Link onClick={logout} style={{ color: 'red', cursor: 'pointer' }}>
+                      Logout
+                    </Nav.Link>
+                  </>
+                )}
               </Nav>
             </Navbar.Collapse>
           </div>
