@@ -1,0 +1,53 @@
+/* Estilo principal para el Navbar */
+.navbar-main {
+  min-height: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* Wrapper para los links a la derecha */
+.navbar-links-wrapper {
+  display: flex;
+  align-items: center;
+}
+.navbar-container {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.navbar-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+}
+
+.navbar-brand-flex {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  max-height: 100px;
+  width: auto;
+  margin-right: 10px;
+  object-fit: contain;
+  display: block;
+}
+
+.navbar-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-left: 2px;
+  line-height: 80px;
+  padding-left: 4px;
+  margin-right: 32px;
+}
+
+.navbar-links-flex {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
