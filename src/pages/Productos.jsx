@@ -1,42 +1,53 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import CustomNavbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { ProductList } from '../components/productList.jsx';
 
 export default function Productos() {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(Infinity);
+  const [category, setCategory] = useState('Todos');
+
   return (
     <div>
-  <CustomNavbar />
+      <CustomNavbar />
       <main>
-        <section className="filtros-productos">
-          <form id="formFiltros">
-            <select name="categoria" id="categoria">
-              <option value="">Todas las categorías</option>
-              <option value="perifericos">Periféricos</option>
-              <option value="audio">Audio</option>
-              <option value="monitores">Monitores</option>
-              <option value="juegos">Juegos</option>
-            </select>
-            <input type="text" id="buscador" name="buscador" placeholder="Buscar producto..." />
-            <button type="submit">Buscar</button>
-          </form>
-        </section>
-        <section className="lista-productos">
-          <h2>Todos los Productos</h2>
-          <div className="grid-productos">
-            <div className="producto">
-              <div className="img-contenedor">
-                <a href="#">
-                  <img src="/images/mouse-removebg-preview.png" alt="Mouse Gamer RGB" />
-                  <div className="descripcion-hover">Mouse gamer con luces RGB y alta precisión.</div>
-                </a>
-              </div>
-              <h3>Mouse Gamer RGB</h3>
-              <p>$19.990</p>
-              <button>Añadir al carrito</button>
-            </div>
-            
-          </div>
-        </section>
+        <div className="filtro-productos-wrapper">
+          <section className="filter-section">
+            <label>
+              Precio mínimo:
+              <input
+                type="number"
+                value={minPrice}
+                onChange={e => setMinPrice(Number(e.target.value))}
+              />
+            </label>
+            <label>
+              Precio máximo:
+              <input
+                type="number"
+                value={maxPrice === Infinity ? '' : maxPrice}
+                onChange={e => setMaxPrice(e.target.value === '' ? Infinity : Number(e.target.value))}
+              />
+            </label>
+            <label>
+              Categoría:
+              <select value={category} onChange={e => setCategory(e.target.value)}>
+                <option value='Todos'>Todos</option>
+                <option value='perifericos'>Periféricos</option>
+                <option value='audio'>Audio</option>
+                <option value='monitores'>Monitores</option>
+                <option value='juegos'>Juegos</option>
+                <option value='coleccionables'>Coleccionables</option>
+                <option value='accesorios'>Accesorios</option>
+              </select>
+            </label>
+          </section>
+        </div>
+        <div className="productos-lista-pagina">
+          <ProductList min={minPrice} max={maxPrice} category={category} />
+        </div>
       </main>
       <Footer />
     </div>

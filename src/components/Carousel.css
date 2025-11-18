@@ -1,0 +1,43 @@
+.carrusel-hero {
+  margin-bottom: 2rem;
+}
+
+.hero-banner {
+  max-height: 520px;
+  object-fit: cover;
+}
+.hero-banner {
+  display: block;
+  width: 100%;
+  max-width: 1920px;
+  max-height: 520px;
+  height: auto;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.hero-banner-contain {
+  object-fit: contain;
+}
+.hero-banner-contain {
+  object-fit: contain;
+}
+.carousel-caption {
+  bottom: 40px;
+}
+
+.banner-cta {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px 32px;
+  border-radius: 30px;
+  background: #00ff00;
+  color: #222;
+  border: none;
+  text-shadow: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.banner-cta:hover {
+  background: #00cc00;
+  color: #fff;
+}
