@@ -1339,3 +1339,96 @@ section.formulario.cuadro-registro a { color: #00ff66 !important; font-weight:70
   border-color: var(--accent-2);
   box-shadow: 0 0 18px rgba(0,255,204,0.10);
 }
+
+/* =======================================================================
+   PERFIL - ESTILOS PARA LA SECCIÓN DE CONTENIDO
+   ======================================================================= */
+.perfil-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.perfil-contenido p {
+  color: #e0ffe9;
+  font-size: 1.05rem;
+  margin: 0.5rem 0;
+}
+
+.perfil-contenido p strong {
+  color: #00ff00;
+  font-weight: 700;
+}
+
+.perfil-botones {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.perfil-botones .btn {
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.perfil-botones .btn-primary {
+  background: #00ff00;
+  color: #121212;
+  border-color: #00ff00;
+}
+
+.perfil-botones .btn-primary:hover {
+  background: #00ffcc;
+  border-color: #00ffcc;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+}
+
+.perfil-botones .btn-danger {
+  background: #ff6969;
+  color: #ffffff;
+  border-color: #ff6969;
+}
+
+.perfil-botones .btn-danger:hover {
+  background: #ff4444;
+  border-color: #ff4444;
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.4);
+}
+
+.perfil-form {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: #00ff00;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.form-group input {
+  background: #181818;
+  border: 1px solid #00ff00;
+  border-radius: 6px;
+  padding: 0.7rem;
+  color: #e0ffe9;
+  width: 100%;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00ffcc;
+}
+
+.form-group input:disabled {
+  background: #0a0a0a;
+  color: #888;
+}

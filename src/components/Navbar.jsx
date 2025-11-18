@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./Navbar.css";
+import Perfil from "../pages/Perfil";
 
 function CustomNavbar() {
   const { user, getDisplayName, logout } = useAuth();
@@ -16,7 +17,7 @@ function CustomNavbar() {
               className="navbar-logo"
             />
             <span className="navbar-title">
-              Pixal&Gamers Store
+              Pixel&Gamers Store
             </span>
           </div>
           <div className="navbar-links-wrapper">
@@ -36,21 +37,12 @@ function CustomNavbar() {
                  )}
                  {user && (
                    <>
-                     <Nav.Link disabled style={{ color: '#888' }}>
-                       {user.nombre ? `Hola, ${user.nombre}` : user.email}
-                     </Nav.Link>
-                     <Nav.Link onClick={logout} style={{ color: 'red', cursor: 'pointer' }}>
-                       Logout
+                     <Nav.Link href="/Perfil">
+                       {user.nombre ? `Hola ${user.nombre}` : user.email}
                      </Nav.Link>
                    </>
                  )}
                </Nav>
-              {user && (
-                <div className="navbar-user-info">
-                  <span>{getDisplayName()}</span>
-                  <button className="navbar-logout-btn" onClick={logout}>Cerrar sesión</button>
-                </div>
-              )}
             </Navbar.Collapse>
           </div>
         </div>
