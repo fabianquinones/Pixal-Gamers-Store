@@ -1,14 +1,16 @@
 import React from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "./Navbar.css";
+import Perfil from "../pages/Perfil";
 
 function CustomNavbar() {
   const { user, isAdmin } = useAuth();
   
   return (
-  <Navbar expand="lg" className="bg-body-tertiary navbar-main">
+    <Navbar expand="lg" className="bg-body-tertiary navbar-main">
       <Container fluid className="navbar-container">
         <div className="navbar-flex">
           <div className="navbar-brand-flex">
@@ -18,7 +20,7 @@ function CustomNavbar() {
               className="navbar-logo"
             />
             <span className="navbar-title">
-              Pixal&Gamers Store
+              Pixel&Gamers Store
             </span>
           </div>
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />

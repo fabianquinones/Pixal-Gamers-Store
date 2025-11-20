@@ -11,7 +11,7 @@ function ProductCard({ product }) {
   const navegador = useNavigate();
   const redirigirProducto = () => {
     navegador(`/DetalleProducto/${id}`);
-  }
+  };
 
   return (
     <Card className="producto h-100 d-flex flex-column" style={{ width: "18rem", margin: "1rem" }}>
