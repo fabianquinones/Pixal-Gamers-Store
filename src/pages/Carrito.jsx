@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomNavbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Carrito() {
-  const { items, updateQuantity, removeItem, clearCart, total } = useCart();
+  const { items, updateQuantity, removeItem, clearCart, total, checkout, syncBackend } = useCart();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [mensaje, setMensaje] = useState(null);
 
-  const handlePagar = () => {
-    if (items.length === 0) return;
-    alert(`Compra simulada: ${items.length} artículo(s). Total $${total.toLocaleString()}.`);
-    clearCart();
+  const handlePagar = async () => {
+    if (items.length === 0 || loading) return;
+    setMensaje(null);
+    setLoading(true);
+    try {
+      const venta = await checkout();
+      setMensaje(`Venta registrada (ID ${venta.idVenta || venta.id || '??'}). Total $${(venta.total || total).toLocaleString()}`);
+    } catch (e) {
+      setMensaje(e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSeguirComprando = () => {
@@ -52,6 +62,11 @@ export default function Carrito() {
               </ul>
             )}
           </div>
+          {mensaje && (
+            <div className="carrito-mensaje">
+              {mensaje}
+            </div>
+          )}
           <div className="carrito-summary">
             <div className="carrito-total">
               <strong>Total:</strong> ${total.toLocaleString()}
@@ -60,8 +75,8 @@ export default function Carrito() {
               <button className="btn-secondary" onClick={clearCart} disabled={items.length === 0}>
                 Vaciar carrito
               </button>
-              <button className="btn-primary" onClick={handlePagar} disabled={items.length === 0}>
-                Pagar
+              <button className="btn-primary" onClick={handlePagar} disabled={items.length === 0 || loading}>
+                {loading ? 'Procesando...' : 'Pagar'}{syncBackend ? '' : ' (local)'}
               </button>
             </div>
           </div>

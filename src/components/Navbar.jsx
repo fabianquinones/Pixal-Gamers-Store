@@ -1,11 +1,14 @@
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "./Navbar.css";
 import Perfil from "../pages/Perfil";
 
 function CustomNavbar() {
-  const { user, getDisplayName, logout } = useAuth();
+  const { user, isAdmin } = useAuth();
+  
   return (
     <Navbar expand="lg" className="bg-body-tertiary navbar-main">
       <Container fluid className="navbar-container">
@@ -20,31 +23,26 @@ function CustomNavbar() {
               Pixel&Gamers Store
             </span>
           </div>
-          <div className="navbar-links-wrapper">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto navbar-links-flex">
-                <Nav.Link href="/">Inicio</Nav.Link>
-                <Nav.Link href="/productos">Productos</Nav.Link>
-                <Nav.Link href="/carrito">Carrito</Nav.Link>
-                <Nav.Link href="/nosotros">Nosotros</Nav.Link>
-                <Nav.Link href="/contacto">Contacto</Nav.Link>
-                 {!user && (
-                   <>
-                     <Nav.Link href="/login">Login</Nav.Link>
-                     <Nav.Link href="/registro">Registro</Nav.Link>
-                   </>
-                 )}
-                 {user && (
-                   <>
-                     <Nav.Link href="/Perfil">
-                       {user.nombre ? `Hola ${user.nombre}` : user.email}
-                     </Nav.Link>
-                   </>
-                 )}
-               </Nav>
-            </Navbar.Collapse>
-          </div>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto navbar-links-flex">
+              <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+              <Nav.Link as={Link} to="/Productos">Productos</Nav.Link>
+              <Nav.Link as={Link} to="/Nosotros">Nosotros</Nav.Link>
+              <Nav.Link as={Link} to="/Contacto">Contacto</Nav.Link>
+              {user ? (
+                <>
+                  <Nav.Link as={Link} to="/Perfil">Mi Perfil</Nav.Link>
+                  {isAdmin && <Nav.Link as={Link} to="/Admin">Admin</Nav.Link>}
+                </>
+              ) : (
+                <>
+                  <Nav.Link as={Link} to="/Login">Iniciar Sesión</Nav.Link>
+                </>
+              )}
+              <Nav.Link as={Link} to="/Carrito">Carrito</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </div>
       </Container>
     </Navbar>

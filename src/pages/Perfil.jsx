@@ -1,20 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomNavbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 
 export default function Perfil() {
-  const { user, logout } = useAuth();
+  const { user, logout, updateProfile, deleteAccount } = useAuth();
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
   const [formData, setFormData] = useState({
-    nombre: user?.nombre || "",
-    email: user?.email || "",
-    telefono: user?.telefono || "",
-    direccion: user?.direccion || "",
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    direccion: "",
   });
+  const [mensaje, setMensaje] = useState(null);
+  const [error, setError] = useState(null);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        nombre: user.nombre || "",
+        apellido: user.apellido || "",
+        email: user.email || "",
+        telefono: user.telefono || "",
+        direccion: user.direccion || "",
+      });
+    }
+  }, [user]);
 
   const handleLogout = () => {
     logout();
@@ -26,25 +48,53 @@ export default function Perfil() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSave = () => {
-    // Actualizar el objeto user con los nuevos datos
-    if (user) {
-      user.nombre = formData.nombre;
-      user.telefono = formData.telefono;
-      user.direccion = formData.direccion;
+  const handleSave = async () => {
+    setMensaje(null);
+    setError(null);
+    
+    try {
+      await updateProfile({
+        nombreUsuario: formData.nombre,
+        apellidoUsuario: formData.apellido,
+        telefono: formData.telefono,
+        direccion: formData.direccion
+      });
+      setMensaje("Perfil actualizado exitosamente");
+    } catch (err) {
+      setError(err.message || "Error al actualizar perfil");
     }
-    setIsEditing(false);
   };
 
   const handleCancel = () => {
-    // Restaurar los valores originales del formulario
-    setFormData({
-      nombre: user?.nombre || "",
-      email: user?.email || "",
-      telefono: user?.telefono || "",
-      direccion: user?.direccion || "",
-    });
-    setIsEditing(false);
+    if (user) {
+      setFormData({
+        nombre: user.nombre || "",
+        apellido: user.apellido || "",
+        email: user.email || "",
+        telefono: user.telefono || "",
+        direccion: user.direccion || "",
+      });
+    }
+    setMensaje(null);
+    setError(null);
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+    const confirmado = window.confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.");
+    if (!confirmado) return;
+    setError(null);
+    setMensaje(null);
+    setLoadingDelete(true);
+    try {
+      await deleteAccount();
+      setMensaje("Cuenta eliminada. Redirigiendo...");
+      setTimeout(() => navigate('/'), 1200);
+    } catch (err) {
+      setError(err.message || 'Error al eliminar cuenta');
+    } finally {
+      setLoadingDelete(false);
+    }
   };
 
   return (
@@ -53,6 +103,8 @@ export default function Perfil() {
       <main>
         <section className="formulario cuadro-registro">
           <h2>Mi Perfil</h2>
+            {mensaje && <Alert variant="success">{mensaje}</Alert>}
+            {error && <Alert variant="danger">{error}</Alert>}
             <div className="perfil-contenido">
               <div className="perfil-form">
                 <div className="form-group">
@@ -63,6 +115,16 @@ export default function Perfil() {
                     value={formData.nombre}
                     onChange={handleInputChange}
                     placeholder="Tu nombre"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Apellido</label>
+                  <input
+                    type="text"
+                    name="apellido"
+                    value={formData.apellido}
+                    onChange={handleInputChange}
+                    placeholder="Tu apellido"
                   />
                 </div>
                 <div className="form-group">
@@ -98,9 +160,13 @@ export default function Perfil() {
                 </div>
               </div>
 
-              <div className="perfil-botones">
+              <div className="perfil-botones" style={{display:'flex', flexWrap:'wrap', gap:'0.75rem', marginTop:'1rem'}}>
                 <Button variant="primary" onClick={handleSave}>Guardar Cambios</Button>
                 <Button variant="secondary" onClick={handleCancel}>Cancelar</Button>
+                <Button className="btn-historial" onClick={() => navigate('/Historial')}>Historial</Button>
+                <Button variant="outline-danger" disabled={loadingDelete} onClick={handleDeleteAccount}>
+                  {loadingDelete ? 'Eliminando...' : 'Eliminar Cuenta'}
+                </Button>
                 <Button variant="danger" onClick={handleLogout}>Cerrar Sesión</Button>
               </div>
             </div>

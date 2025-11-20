@@ -10,6 +10,8 @@ import Login from './pages/Login';
 import Nosotros from './pages/Nosotros';
 import DetalleProducto from './pages/DetalleProducto';
 import Perfil from './pages/Perfil';
+import HistorialVentas from './pages/HistorialVentas';
+import AdminProductos from './pages/AdminProductos';
 
 
 
@@ -27,6 +29,9 @@ function App() {
         <Route path="/Nosotros" element={<Nosotros />} />
         <Route path="/Perfil" element={<Perfil />} />
         <Route path="/DetalleProducto/:id" element={<DetalleProducto />} />
+        <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/Historial" element={<HistorialVentas />} />
+        <Route path="/Admin" element={<AdminProductos />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { Form, Button, Card, Alert, Container, Row, Col } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import CustomNavbar from '../components/Navbar'
@@ -8,10 +8,12 @@ import Footer from '../components/Footer'
 export default function Login() {
     const { login } = useAuth()
     const navigate = useNavigate()
+  const location = useLocation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+  const registered = location.state?.registered
 
 
     const handleSubmit = async (e) => {
@@ -20,7 +22,7 @@ export default function Login() {
         setLoading(true)
         try {
             await login({ email, password })
-            navigate('/')
+            navigate('/Perfil')
         } catch (err) {
             setError(err.message)
         } finally {
@@ -39,6 +41,7 @@ export default function Login() {
                   <Col md={10} lg={8}>
                     <div className="login-inner p-3">
                       <h3 className="card-title mb-3">Iniciar sesión</h3>
+                      {registered && <Alert variant="success">Registro exitoso. Ahora inicia sesión.</Alert>}
                       {error && <Alert variant="danger">{error}</Alert>}
                       <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
