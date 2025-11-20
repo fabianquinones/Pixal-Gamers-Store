@@ -1112,6 +1112,120 @@ section.formulario.cuadro-registro a { color: #00ff66 !important; font-weight:70
   font-size: 1rem;
 }
 
+/* =======================================================================
+   Botones personalizados Historial y Admin
+   ======================================================================= */
+.btn-historial {
+  background: linear-gradient(180deg,#00ff66,#00ff00) !important;
+  color: #121212 !important;
+  border: 1px solid #00ff00 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 0 1px #00ff0060, 0 6px 18px rgba(0,255,0,0.18) !important;
+  border-radius: 10px !important;
+  transition: background .25s ease, box-shadow .25s ease, transform .15s ease;
+}
+.btn-historial:hover, .btn-historial:focus {
+  background: #00ffcc !important;
+  color: #121212 !important;
+  box-shadow: 0 0 14px #00ffcc, 0 6px 20px rgba(0,255,204,0.25) !important;
+  transform: translateY(-2px);
+}
+.btn-historial:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px #00ffcc, 0 4px 14px rgba(0,255,204,0.18) !important;
+}
+
+/* =======================================================================
+   Admin formulario estilos oscuros
+   ======================================================================= */
+.admin-product-section {
+  border: 1px solid #2e2e2e;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  background: #121212;
+  box-shadow: 0 0 22px rgba(0,255,0,0.08);
+}
+.admin-section-title {
+  color: #00ff00;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.admin-product-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.admin-product-form .admin-input,
+.admin-product-form .admin-textarea {
+  background: #181818 !important;
+  border: 1px solid #00ff00 !important;
+  color: #e9ffe9 !important;
+  border-radius: 8px !important;
+  padding: .55rem .75rem !important;
+  font-size: .9rem !important;
+  box-shadow: inset 0 0 12px rgba(0,255,0,0.05);
+}
+.admin-product-form .admin-input::placeholder,
+.admin-product-form .admin-textarea::placeholder {
+  color: #66ff99;
+  opacity: .75;
+}
+.admin-product-form .admin-input:focus,
+.admin-product-form .admin-textarea:focus {
+  outline: none;
+  border-color: #00ffcc !important;
+  box-shadow: 0 0 0 2px #00ffcc55 !important;
+}
+.admin-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #00ffcc;
+  font-size: .8rem;
+  font-weight: 600;
+}
+.admin-checkbox {
+  accent-color: #00ff00;
+  cursor: pointer;
+}
+.admin-textarea {
+  grid-column: 1 / -1;
+  min-height: 110px;
+  resize: vertical;
+}
+.admin-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+/* =======================================================================
+   Admin formulario estilos oscuros
+   ======================================================================= */
+.admin-product-form .admin-input,
+.admin-product-form .admin-textarea {
+  background:#181818 !important;
+  border:1px solid #00ff00 !important;
+  color:#e9ffe9 !important;
+  border-radius:8px !important;
+  padding:.55rem .75rem !important;
+  font-size:.9rem !important;
+  box-shadow: inset 0 0 12px rgba(0,255,0,0.05);
+}
+.admin-product-form .admin-input::placeholder,
+.admin-product-form .admin-textarea::placeholder { color:#66ff99; opacity:.75; }
+.admin-product-form .admin-input:focus,
+.admin-product-form .admin-textarea:focus {
+  outline:none;
+  border-color:#00ffcc !important;
+  box-shadow:0 0 0 2px #00ffcc55 !important;
+}
+.admin-product-form label input[type="checkbox"] { cursor:pointer; }
+.admin-product-form textarea.admin-textarea { min-height:110px; resize:vertical; }
+
+
 @media (max-width: 1100px) {
   .valores-row { gap: 1rem; }
   .valor-card { min-width: 140px; max-width: 100%; }
@@ -1362,4 +1476,15 @@ section.formulario.cuadro-registro a { color: #00ff66 !important; font-weight:70
   outline: none;
   border-color: var(--accent-2);
   box-shadow: 0 0 18px rgba(0,255,204,0.10);
+}
+
+.carrito-mensaje {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: rgba(0,255,0,0.08);
+  border: 1px solid rgba(0,255,0,0.2);
+  border-radius: 8px;
+  color: #00ff00;
+  font-size: 0.95rem;
+  text-align: center;
 }

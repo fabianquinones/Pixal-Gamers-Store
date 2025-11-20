@@ -1,89 +1,125 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-
+import * as api from '../Api'
 
 const AuthContext = createContext(null)
 export const useAuth = () => useContext(AuthContext)
 
-
-const USERS_KEY = 'tg_users' // lista de usuarios registrados
 const SESSION_KEY = 'tg_session' // usuario logueado actual
-
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
-
+    const [isAdmin, setIsAdmin] = useState(false)
 
     // Cargar sesión persistida
     useEffect(() => {
         const raw = localStorage.getItem(SESSION_KEY)
-        if (raw) { setUser(JSON.parse(raw)) }
+        if (raw) {
+            const u = JSON.parse(raw)
+            setUser(u)
+            setIsAdmin(!!u?.email && u.email.toLowerCase().endsWith('@duocuc.cl'))
+        }
     }, [])
 
-
-    const getUsers = () => {
-        const raw = localStorage.getItem(USERS_KEY)
-        return raw ? JSON.parse(raw) : []
-    }
-
-
-    const saveUsers = (list) => {
-        localStorage.setItem(USERS_KEY, JSON.stringify(list))
-    }
-
-
-    const isValidEmail = (em) => {
-        // simple email regex
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)
-    }
-
-    const isValidPhone = (tel) => {
-        // allow digits, spaces, +, -, parentheses; length between 7 and 15
-        return /^[+0-9\s\-()]{7,15}$/.test(tel)
-    }
-
-    const register = ({ nombre, apellido, email, password, telefono }) => {
-        // basic validations
-        if (!nombre || !email || !password) {
-            throw new Error('Nombre, correo y contraseña son obligatorios.')
+    const register = async ({ nombre, apellido, email, password, telefono, direccion }) => {
+        try {
+            const payload = {
+                nombre,
+                apellido,
+                correo: email,
+                contrasena: password,
+                telefono,
+                direccion
+            }
+            const response = await api.registro(payload)
+            return response.data
+        } catch (error) {
+            if (error.response?.data?.mensaje) {
+                throw new Error(error.response.data.mensaje)
+            }
+            throw new Error('Error al registrar usuario')
         }
-        if (!isValidEmail(email)) {
-            throw new Error('El correo no tiene un formato válido.')
-        }
-        if (String(password).length < 6) {
-            throw new Error('La contraseña debe tener al menos 6 caracteres.')
-        }
-        if (!telefono || !isValidPhone(telefono)) {
-            throw new Error('El teléfono no es válido. Use sólo números y caracteres + - ( ).')
-        }
-
-        const users = getUsers()
-        const exists = users.some(u => u.email.toLowerCase() === email.toLowerCase())
-        if (exists) { throw new Error('El correo ya está en uso.') }
-
-        const newUser = { id: crypto.randomUUID(), nombre, apellido, email, password, telefono }
-        users.push(newUser)
-        saveUsers(users)
-        return { id: newUser.id, nombre, apellido, email, telefono }
     }
 
-
-    const login = ({ email, password }) => {
-        const users = getUsers()
-        const match = users.find(u => u.email === email && u.password === password)
-        if (!match) { throw new Error('Usuario o contraseña inválidos.') }
-        const sessionUser = { id: match.id, nombre: match.nombre, apellido: match.apellido, email: match.email }
-        setUser(sessionUser)
-        localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser))
-        return sessionUser
+    const login = async ({ email, password }) => {
+        try {
+            const payload = {
+                correo: email,
+                contrasena: password
+            }
+            const usuario = await api.login(payload)
+            const sessionUser = {
+                id: usuario.idUsuario,
+                nombre: usuario.nombreUsuario,
+                apellido: usuario.apellidoUsuario,
+                email: usuario.correo,
+                telefono: usuario.telefono,
+                direccion: usuario.dirUsuario
+            }
+            setUser(sessionUser)
+            setIsAdmin(!!sessionUser.email && sessionUser.email.toLowerCase().endsWith('@duocuc.cl'))
+            localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser))
+            return sessionUser
+        } catch (error) {
+            if (error.response?.data?.mensaje) {
+                throw new Error(error.response.data.mensaje)
+            }
+            throw new Error('Usuario o contraseña inválidos')
+        }
     }
 
-
-    const logout = () => {
-        setUser(null)
-        localStorage.removeItem(SESSION_KEY)
+    const logout = async () => {
+        try {
+            await api.logout()
+        } catch (error) {
+            console.error('Error al hacer logout:', error)
+        } finally {
+            setUser(null)
+            setIsAdmin(false)
+            localStorage.removeItem(SESSION_KEY)
+        }
     }
 
+    const updateProfile = async (datos) => {
+        if (!user) throw new Error('No hay usuario logueado')
+        
+        try {
+            const response = await api.updatePerfil(user.id, datos)
+            const updatedUser = {
+                ...user,
+                nombre: response.data.nombreUsuario,
+                apellido: response.data.apellidoUsuario,
+                telefono: response.data.telefono,
+                direccion: response.data.dirUsuario
+            }
+            setUser(updatedUser)
+            setIsAdmin(!!updatedUser.email && updatedUser.email.toLowerCase().endsWith('@duocuc.cl'))
+            localStorage.setItem(SESSION_KEY, JSON.stringify(updatedUser))
+            return updatedUser
+        } catch (error) {
+            if (error.response?.data?.mensaje) {
+                throw new Error(error.response.data.mensaje)
+            }
+            throw new Error('Error al actualizar perfil')
+        }
+    }
 
-    const value = { user, register, login, logout }
+    const deleteAccount = async () => {
+        if (!user) throw new Error('No hay usuario logueado')
+        try {
+            await api.deleteUsuario(user.id)
+        } catch (error) {
+            if (error.response?.data?.mensaje) {
+                throw new Error(error.response.data.mensaje)
+            }
+            throw new Error('Error al eliminar cuenta')
+        } finally {
+            // limpiar sesión local siempre al intentar eliminar
+            setUser(null)
+            setIsAdmin(false)
+            localStorage.removeItem(SESSION_KEY)
+        }
+    }
+
+    const value = { user, isAdmin, register, login, logout, updateProfile, deleteAccount }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api/v1", // gracias al proxy de Vite
+  baseURL: "/api", 
 });
 
 // ==================== USUARIOS ====================
@@ -13,24 +13,18 @@ export const login = async (payload) => {
   return res.data;
 };
 
-export const getPerfil = async () => {
-  const res = await api.get("/usuarios/perfil");
-  return res.data;
-};
-
-export const updatePerfil = (payload) => api.put("/usuarios/perfil", payload);
+export const updatePerfil = (idUsuario, payload) => api.put(`/usuarios/${idUsuario}/perfil`, payload);
 
 export const logout = () => api.post("/usuarios/logout");
 
-export const validateToken = async () => {
-  const res = await api.get("/usuarios/validate");
-  return res.data;
-};
+export const deleteUsuario = (idUsuario) => api.delete(`/usuarios/${idUsuario}`);
 
-export const sendContacto = (payload) => api.post("/usuarios/contacto", payload);
+// ==================== CONTACTO ====================
+
+export const sendContacto = (payload) => api.post("/contacto", payload);
 
 export const getContactos = async () => {
-  const res = await api.get("/usuarios/contacto");
+  const res = await api.get("/contacto");
   const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
   return data;
 };
@@ -60,57 +54,39 @@ export const getProductosDestacados = async () => {
   return data;
 };
 
-// ==================== VENTAS ====================
+// ==================== VENTAS Y CARRITO ====================
 
-export const createVenta = (payload) => api.post("/ventas", payload);
-
-export const getVentas = async () => {
-  const res = await api.get("/ventas");
+export const getHistorialVentas = async (idUsuario) => {
+  const res = await api.get("/ventas/historial", { params: { idUsuario } });
   const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
   return data;
 };
 
-export const getVenta = async (id) => {
-  const res = await api.get(`/ventas/${id}`);
+export const getCarritoBackend = async (idUsuario) => {
+  const res = await api.get(`/ventas/carrito`, { params: { idUsuario } });
   return res.data;
 };
 
-export const getHistorialVentas = async () => {
-  const res = await api.get("/ventas/historial");
-  const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
-  return data;
-};
-
-export const updateEstadoVenta = (id, payload) => api.put(`/ventas/${id}/estado`, payload);
-
-// ==================== CARRITO ====================
-
-export const getCarrito = async () => {
-  const res = await api.get("/ventas/carrito");
+export const addItemCarritoBackend = async (idUsuario, item) => {
+  const res = await api.post(`/ventas/carrito/items`, item, { params: { idUsuario } });
   return res.data;
 };
 
-export const addItemCarrito = (payload) => api.post("/ventas/carrito/items", payload);
-
-export const updateItemCarrito = (id, payload) => api.put(`/ventas/carrito/items/${id}`, payload);
-
-export const deleteItemCarrito = (id) => api.delete(`/ventas/carrito/items/${id}`);
-
-export const clearCarrito = () => api.delete("/ventas/carrito");
-
-// ==================== LOGÍSTICA ====================
-
-export const createEnvio = (payload) => api.post("/logistica/envio", payload);
-
-export const getEnvio = async (ventaId) => {
-  const res = await api.get(`/logistica/envio/${ventaId}`);
+export const updateItemCarritoBackend = async (idItem, cantidad) => {
+  const res = await api.put(`/ventas/carrito/items/${idItem}`, { cantidad });
   return res.data;
 };
 
-export const updateEstadoEnvio = (id, payload) => api.put(`/logistica/envio/${id}/estado`, payload);
+export const eliminarItemCarritoBackend = async (idItem) => {
+  await api.delete(`/ventas/carrito/items/${idItem}`);
+};
 
-export const rastrearEnvio = async (codigo) => {
-  const res = await api.get(`/logistica/rastreo/${codigo}`);
+export const vaciarCarritoBackend = async (idUsuario) => {
+  await api.delete(`/ventas/carrito`, { params: { idUsuario } });
+};
+
+export const checkoutVenta = async (idUsuario) => {
+  const res = await api.post(`/ventas/checkout`, null, { params: { idUsuario } });
   return res.data;
 };
 

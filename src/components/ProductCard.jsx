@@ -29,9 +29,11 @@ function ProductCard({ product }) {
             <strong>Precio:</strong> ${price}
           </p>
         </div>
-        <Button variant="primary" className="mt-auto" onClick={redirigirProducto}>
-          ver detalle del producto
-        </Button>
+        <div className="d-flex mt-auto">
+          <Button variant="primary" onClick={redirigirProducto} className="w-100">
+            Ver detalle
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

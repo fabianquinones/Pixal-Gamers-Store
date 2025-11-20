@@ -1,65 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CustomNavbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useCart } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Carrito() {
-  const STORAGE_KEY = 'pgs_cart_v1';
+  const { items, updateQuantity, removeItem, clearCart, total, checkout, syncBackend } = useCart();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [mensaje, setMensaje] = useState(null);
 
-  const [cart, setCart] = useState([]);
-  const [form, setForm] = useState({ id: '', title: '', price: '' });
-
-  useEffect(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      try {
-        setCart(JSON.parse(raw));
-      } catch {
-        setCart([]);
-      }
+  const handlePagar = async () => {
+    if (items.length === 0 || loading) return;
+    setMensaje(null);
+    setLoading(true);
+    try {
+      const venta = await checkout();
+      setMensaje(`Venta registrada (ID ${venta.idVenta || venta.id || '??'}). Total $${(venta.total || total).toLocaleString()}`);
+    } catch (e) {
+      setMensaje(e.message);
+    } finally {
+      setLoading(false);
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-  }, [cart]);
-
-  const addOrIncrement = (product) => {
-    setCart((prev) => {
-      const exists = prev.find((p) => p.id === product.id);
-      if (exists) {
-        return prev.map((p) =>
-          p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
   };
 
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter((p) => p.id !== id));
-  };
-
-  const changeQuantity = (id, delta) => {
-    setCart((prev) =>
-      prev
-        .map((p) =>
-          p.id === id ? { ...p, quantity: Math.max(1, p.quantity + delta) } : p
-        )
-        .filter((p) => p.quantity > 0)
-    );
-  };
-
-  const clearCart = () => setCart([]);
-  const total = cart.reduce((s, p) => s + p.price * p.quantity, 0);
-
-  const handleAddForm = (e) => {
-    e.preventDefault();
-    const id = String(form.id).trim();
-    const title = String(form.title).trim();
-    const price = parseFloat(form.price);
-    if (!id || !title || Number.isNaN(price) || price < 0) return;
-    addOrIncrement({ id, title, price });
-    setForm({ id: '', title: '', price: '' });
+  const handleSeguirComprando = () => {
+    navigate('/Productos');
   };
 
   return (
@@ -68,25 +34,26 @@ export default function Carrito() {
       <main className="formulario cuadrado-login">
         <section className="carrito-card">
           <h2 className="carrito-heading">Carrito de compras</h2>
-
           <div className="carrito-content">
-            {cart.length === 0 ? (
+            {items.length === 0 ? (
               <div className="carrito-empty">Tu carrito está vacío.</div>
             ) : (
               <ul className="carrito-list">
-                {cart.map((item) => (
+                {items.map((item) => (
                   <li key={item.id} className="carrito-item">
                     <div className="carrito-item-left">
-                      <div className="carrito-title">{item.title}</div>
-                      <div className="carrito-muted">ID: {item.id}</div>
+                      <img src={item.imagen} alt={item.nombre} style={{ width: 60, height: 60, objectFit: 'contain', marginRight: 16 }} />
+                      <div>
+                        <div className="carrito-title">{item.nombre}</div>
+                        <div className="carrito-muted">ID: {item.id}</div>
+                      </div>
                     </div>
-
                     <div className="carrito-item-right">
-                      <div className="carrito-price">${item.price.toFixed(2)}</div>
+                      <div className="carrito-price">${item.precio.toLocaleString()}</div>
                       <div className="carrito-qty">
-                        <button onClick={() => changeQuantity(item.id, -1)}>-</button>
-                        <span className="carrito-qty-number">{item.quantity}</span>
-                        <button onClick={() => changeQuantity(item.id, +1)}>+</button>
+                        <button onClick={() => updateQuantity(item.id, Math.max(1, item.cantidad - 1))} disabled={item.cantidad <= 1}>-</button>
+                        <span className="carrito-qty-number">{item.cantidad}</span>
+                        <button onClick={() => updateQuantity(item.id, item.cantidad + 1)}>+</button>
                         <button className="btn-remove" onClick={() => removeItem(item.id)}>Quitar</button>
                       </div>
                     </div>
@@ -95,49 +62,30 @@ export default function Carrito() {
               </ul>
             )}
           </div>
-
+          {mensaje && (
+            <div className="carrito-mensaje">
+              {mensaje}
+            </div>
+          )}
           <div className="carrito-summary">
             <div className="carrito-total">
-              <strong>Total:</strong> ${total.toFixed(2)}
+              <strong>Total:</strong> ${total.toLocaleString()}
             </div>
             <div className="carrito-actions">
-              <button className="btn-secondary" onClick={clearCart} disabled={cart.length === 0}>
+              <button className="btn-secondary" onClick={clearCart} disabled={items.length === 0}>
                 Vaciar carrito
               </button>
-              <button
-                className="btn-primary"
-                onClick={() => {
-                  if (cart.length === 0) return;
-                  alert(`Compra simulada: ${cart.length} artículo(s). Total $${total.toFixed(2)}.`);
-                  clearCart();
-                }}
-              >
-                Pagar
+              <button className="btn-primary" onClick={handlePagar} disabled={items.length === 0 || loading}>
+                {loading ? 'Procesando...' : 'Pagar'}{syncBackend ? '' : ' (local)'}
               </button>
             </div>
           </div>
-
-          <hr />
-
-          <form className="carrito-form" onSubmit={handleAddForm}>
-            <input
-              placeholder="ID"
-              value={form.id}
-              onChange={(e) => setForm((f) => ({ ...f, id: e.target.value }))}
-            />
-            <input
-              placeholder="Título"
-              value={form.title}
-              onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-            />
-            <input
-              placeholder="Precio"
-              value={form.price}
-              onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))}
-            />
-            <button type="submit" className="btn-primary">Añadir al carrito</button>
-          </form>
         </section>
+        <div style={{ textAlign: 'center', marginTop: 24 }}>
+          <button className="btn-secondary" onClick={handleSeguirComprando}>
+            Seguir comprando
+          </button>
+        </div>
       </main>
       <Footer />
     </div>

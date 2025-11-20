@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 
 export default function Registro() {
-    const { register, login } = useAuth()
+  const { register, login } = useAuth()
     const navigate = useNavigate()
   const [form, setForm] = useState({ nombre: '', apellido: '', email: '', password: '', confirmPassword: '', telefono: '' })
     const [error, setError] = useState('')
@@ -19,18 +19,16 @@ export default function Registro() {
         setError('')
         setLoading(true)
     try {
-      
       if (form.password !== form.confirmPassword) {
         setError('Las contraseñas no coinciden.')
         setLoading(false)
         return
       }
 
-     
       const payload = { nombre: form.nombre, apellido: form.apellido, email: form.email, password: form.password, telefono: form.telefono }
       await register(payload)
-      await login({ email: form.email, password: form.password })
-      navigate('/')
+      // Después de registrar, redirigir al login para iniciar sesión
+      navigate('/Login', { state: { registered: true, emailPrefill: form.email } })
     } catch (err) {
       setError(err.message)
     } finally {
