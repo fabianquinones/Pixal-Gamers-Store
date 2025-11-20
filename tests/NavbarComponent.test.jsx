@@ -1,23 +1,29 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from "react-router-dom";
 import CustomNavbar from "../src/components/Navbar.jsx";
+import { AuthProvider } from "../src/contexts/AuthContext.jsx";
 
 describe("Componente Navbar", () => {
   it("renderiza correctamente", () => {
     render(
       <MemoryRouter>
-  <CustomNavbar />
+        <AuthProvider>
+          <CustomNavbar />
+        </AuthProvider>
       </MemoryRouter>
     );
   const nav = screen.getByRole("navigation");
-  expect(nav).toBeDefined();
+  expect(nav).toBeInTheDocument();
   });
 
   it("contiene los enlaces principales con href correctos", () => {
     render(
       <MemoryRouter>
-        <CustomNavbar />
+        <AuthProvider>
+          <CustomNavbar />
+        </AuthProvider>
       </MemoryRouter>
     );
   expect(screen.getByRole("link", { name: /inicio/i }).getAttribute("href")).toBe("/");
