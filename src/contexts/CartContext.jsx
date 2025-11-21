@@ -137,7 +137,8 @@ export function CartProvider({ children }) {
       await clearCart();
       return venta;
     } catch (e) {
-      throw new Error(e.response?.data?.mensaje || 'Error en checkout');
+      
+      throw e;
     }
   }, [user, items, clearCart]);
 

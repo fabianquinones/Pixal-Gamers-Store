@@ -49,6 +49,7 @@ export default function HistorialVentas() {
                 <th>Estado</th>
                 <th>Items</th>
                 <th>Total</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -65,6 +66,11 @@ export default function HistorialVentas() {
                     <td>{v.estado}</td>
                     <td>{items}</td>
                     <td>${total.toLocaleString()}</td>
+                    <td>
+                      <button className="btn-secondary" onClick={() => navigate(`/Venta/${v.idVenta || v.id}`)}>
+                        Ver detalle
+                      </button>
+                    </td>
                   </tr>
                 );
               })}

@@ -9,6 +9,7 @@ const SESSION_KEY = 'tg_session' // usuario logueado actual
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
     const [isAdmin, setIsAdmin] = useState(false)
+    const [ready, setReady] = useState(false)
 
     // Cargar sesión persistida
     useEffect(() => {
@@ -18,6 +19,7 @@ export function AuthProvider({ children }) {
             setUser(u)
             setIsAdmin(!!u?.email && u.email.toLowerCase().endsWith('@duocuc.cl'))
         }
+        setReady(true)
     }, [])
 
     const register = async ({ nombre, apellido, email, password, telefono, direccion }) => {
@@ -120,6 +122,6 @@ export function AuthProvider({ children }) {
         }
     }
 
-    const value = { user, isAdmin, register, login, logout, updateProfile, deleteAccount }
+    const value = { user, isAdmin, ready, register, login, logout, updateProfile, deleteAccount }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

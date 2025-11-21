@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getProductos, createProducto, updateProducto, deleteProducto } from '../Api';
 
 export default function AdminProductos() {
-  const { user, isAdmin } = useAuth();
+  const { user, isAdmin, ready } = useAuth();
   const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,9 +15,10 @@ export default function AdminProductos() {
   const [form, setForm] = useState({ nombre: '', precio: '', descripcion: '', categoria: '', categorialabel: '', imagen: '', destacado: false, stock: 0 });
 
   useEffect(() => {
+    if (!ready) return;
     if (!user) { navigate('/Login'); return; }
     if (!isAdmin) { navigate('/'); return; }
-  }, [user, isAdmin, navigate]);
+  }, [ready, user, isAdmin, navigate]);
 
   const cargar = async () => {
     try {

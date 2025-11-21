@@ -27,20 +27,22 @@ function CustomNavbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto navbar-links-flex">
               <Nav.Link as={Link} to="/">Inicio</Nav.Link>
-              <Nav.Link as={Link} to="/Productos">Productos</Nav.Link>
-              <Nav.Link as={Link} to="/Nosotros">Nosotros</Nav.Link>
-              <Nav.Link as={Link} to="/Contacto">Contacto</Nav.Link>
+              <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
+              <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
+              <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
+              <Nav.Link as={Link} to="/carrito">Carrito 🛒</Nav.Link>
               {user ? (
                 <>
-                  <Nav.Link as={Link} to="/Perfil">Mi Perfil</Nav.Link>
-                  {isAdmin && <Nav.Link as={Link} to="/Admin">Admin</Nav.Link>}
+                  <Nav.Link as={Link} to="/perfil">Mi Perfil</Nav.Link>
+                  {isAdmin && <Nav.Link as={Link} to="/admin">Admin</Nav.Link>}
                 </>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/Login">Iniciar Sesión</Nav.Link>
+                  <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                  <Nav.Link as={Link} to="/registro">Registro</Nav.Link>
                 </>
               )}
-              <Nav.Link as={Link} to="/Carrito">Carrito</Nav.Link>
+            
             </Nav>
           </Navbar.Collapse>
         </div>
