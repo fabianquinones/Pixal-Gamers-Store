@@ -2,9 +2,7 @@ import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
 import "./Navbar.css";
-import Perfil from "../pages/Perfil";
 
 function CustomNavbar() {
   const { user, isAdmin } = useAuth();

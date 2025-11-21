@@ -76,23 +76,6 @@ export default function DetalleProducto() {
     );
   }
 
-  const { addItem } = useCart();
-
-  const handleAddToCart = () => {
-    addItem({
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      imagen: producto.imagen,
-      cantidad: 1,
-    });
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-      navigate('/Carrito');
-    }, 1000);
-  };
-
   if (!producto) {
     return (
       <div>
