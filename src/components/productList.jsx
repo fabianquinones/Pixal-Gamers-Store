@@ -36,7 +36,7 @@ export function ProductList({ min = 0, max = Infinity, category = 'Todos' }) {
 	return (
 		<div className="container">
 			<h2>Productos</h2>
-			{loading && <div>Cargando productos...</div>}
+			{loading && <div>Cargando...</div>}
 			{error && <div style={{ color: 'red' }}>{error}</div>}
 			{!loading && !error && (
 				<div className="grid-productos grid-productos-3">

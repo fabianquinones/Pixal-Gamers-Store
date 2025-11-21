@@ -12,6 +12,7 @@ import DetalleProducto from './pages/DetalleProducto';
 import Perfil from './pages/Perfil';
 import HistorialVentas from './pages/HistorialVentas';
 import AdminProductos from './pages/AdminProductos';
+import VentaDetalle from './pages/VentaDetalle';
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/DetalleProducto/:id" element={<DetalleProducto />} />
         <Route path="/Perfil" element={<Perfil />} />
         <Route path="/Historial" element={<HistorialVentas />} />
+        <Route path="/Venta/:id" element={<VentaDetalle />} />
         <Route path="/Admin" element={<AdminProductos />} />
       </Routes>
     </Router>

@@ -4,8 +4,7 @@ const api = axios.create({
   baseURL: "/api", 
 });
 
-// ==================== USUARIOS ====================
-
+//USUARIOS
 export const registro = (payload) => api.post("/usuarios/registro", payload);
 
 export const login = async (payload) => {
@@ -19,7 +18,7 @@ export const logout = () => api.post("/usuarios/logout");
 
 export const deleteUsuario = (idUsuario) => api.delete(`/usuarios/${idUsuario}`);
 
-// ==================== CONTACTO ====================
+// CONTACTO 
 
 export const sendContacto = (payload) => api.post("/contacto", payload);
 
@@ -29,7 +28,7 @@ export const getContactos = async () => {
   return data;
 };
 
-// ==================== PRODUCTOS ====================
+// PRODUCTOS 
 
 export const getProductos = async (params = {}) => {
   const res = await api.get("/productos", { params });
@@ -54,12 +53,17 @@ export const getProductosDestacados = async () => {
   return data;
 };
 
-// ==================== VENTAS Y CARRITO ====================
-
+//VENTAS Y CARRITO 
 export const getHistorialVentas = async (idUsuario) => {
   const res = await api.get("/ventas/historial", { params: { idUsuario } });
   const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
   return data;
+};
+
+// Obtener una venta por ID
+export const getVenta = async (idVenta) => {
+  const res = await api.get(`/ventas/${idVenta}`);
+  return res.data;
 };
 
 export const getCarritoBackend = async (idUsuario) => {
@@ -90,7 +94,7 @@ export const checkoutVenta = async (idUsuario) => {
   return res.data;
 };
 
-// Interceptor para agregar token JWT automáticamente
+
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -104,15 +108,42 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor para manejar errores de respuesta
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expirado o inválido
+      // Solo redirigir si NO estamos en login/registro
+      const currentPath = window.location.pathname.toLowerCase();
+      const isAuthPage = currentPath === '/login' || currentPath === '/registro';
+      
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      
+      if (!isAuthPage) {
+        window.location.href = "/login";
+      }
     }
+    
+    
+    if (error.response?.status === 409 && error.response?.data?.error === 'stock_insuficiente') {
+      const cleanError = new Error('Stock agotado');
+      cleanError.response = {
+        status: 409,
+        data: {
+          error: 'stock_insuficiente',
+          mensaje: 'Stock agotado'
+        }
+      };
+      return Promise.reject(cleanError);
+    }
+    
+    
+    if (error.response?.status === 400 && error.response?.data?.mensaje) {
+      const cleanError = new Error(error.response.data.mensaje);
+      cleanError.response = error.response;
+      return Promise.reject(cleanError);
+    }
+    
     return Promise.reject(error);
   }
 );

@@ -3,17 +3,16 @@ import CustomNavbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert } from "react-bootstrap";
+import { Button, Alert, Modal, Form } from "react-bootstrap";
 
 export default function Perfil() {
-  const { user, logout, updateProfile, deleteAccount } = useAuth();
+  const { user, ready, logout, updateProfile, deleteAccount } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  }, [user, navigate]);
+    if (!ready) return;
+    if (!user) navigate('/login');
+  }, [ready, user, navigate]);
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -25,6 +24,8 @@ export default function Perfil() {
   const [mensaje, setMensaje] = useState(null);
   const [error, setError] = useState(null);
   const [loadingDelete, setLoadingDelete] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -81,19 +82,19 @@ export default function Perfil() {
 
   const handleDeleteAccount = async () => {
     if (!user) return;
-    const confirmado = window.confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.");
-    if (!confirmado) return;
     setError(null);
     setMensaje(null);
     setLoadingDelete(true);
     try {
       await deleteAccount();
+      setShowDeleteModal(false);
       setMensaje("Cuenta eliminada. Redirigiendo...");
       setTimeout(() => navigate('/'), 1200);
     } catch (err) {
       setError(err.message || 'Error al eliminar cuenta');
     } finally {
       setLoadingDelete(false);
+      setDeleteConfirmText("");
     }
   };
 
@@ -164,12 +165,42 @@ export default function Perfil() {
                 <Button variant="primary" onClick={handleSave}>Guardar Cambios</Button>
                 <Button variant="secondary" onClick={handleCancel}>Cancelar</Button>
                 <Button className="btn-historial" onClick={() => navigate('/Historial')}>Historial</Button>
-                <Button variant="outline-danger" disabled={loadingDelete} onClick={handleDeleteAccount}>
+                <Button variant="outline-danger" disabled={loadingDelete} onClick={() => setShowDeleteModal(true)}>
                   {loadingDelete ? 'Eliminando...' : 'Eliminar Cuenta'}
                 </Button>
                 <Button variant="danger" onClick={handleLogout}>Cerrar Sesión</Button>
               </div>
             </div>
+
+            <Modal show={showDeleteModal} onHide={() => !loadingDelete && setShowDeleteModal(false)} centered>
+              <Modal.Header closeButton={!loadingDelete}>
+                <Modal.Title>Confirmar eliminación</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p style={{fontSize:'0.95rem'}}>
+                  Esta acción <strong>eliminará definitivamente</strong> tu cuenta y no se puede deshacer.
+                  Se perderán tu perfil y cualquier dato asociado (historial, carrito, etc.).
+                </p>
+                <p className="text-danger mb-2">Escribe <code>ELIMINAR</code> para confirmar.</p>
+                <Form.Control
+                  type="text"
+                  disabled={loadingDelete}
+                  placeholder="Escribe ELIMINAR"
+                  value={deleteConfirmText}
+                  onChange={(e) => setDeleteConfirmText(e.target.value)}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" disabled={loadingDelete} onClick={() => setShowDeleteModal(false)}>Cancelar</Button>
+                <Button
+                  variant="danger"
+                  disabled={loadingDelete || deleteConfirmText.trim().toUpperCase() !== 'ELIMINAR'}
+                  onClick={handleDeleteAccount}
+                >
+                  {loadingDelete ? 'Eliminando...' : 'Sí, eliminar'}
+                </Button>
+              </Modal.Footer>
+            </Modal>
 
         </section>
       </main>

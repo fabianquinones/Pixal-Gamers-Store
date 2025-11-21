@@ -9,15 +9,19 @@ export default function Carrito() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [mensaje, setMensaje] = useState(null);
+  const [esError, setEsError] = useState(false);
 
   const handlePagar = async () => {
     if (items.length === 0 || loading) return;
     setMensaje(null);
+    setEsError(false);
     setLoading(true);
     try {
       const venta = await checkout();
-      setMensaje(`Venta registrada (ID ${venta.idVenta || venta.id || '??'}). Total $${(venta.total || total).toLocaleString()}`);
+      setEsError(false);
+      setMensaje(`¡Compra exitosa! Venta registrada (ID ${venta.idVenta || venta.id || '??'}). Total $${(venta.total || total).toLocaleString()}`);
     } catch (e) {
+      setEsError(true);
       setMensaje(e.message);
     } finally {
       setLoading(false);
@@ -63,7 +67,14 @@ export default function Carrito() {
             )}
           </div>
           {mensaje && (
-            <div className="carrito-mensaje">
+            <div className="carrito-mensaje" style={{ 
+              padding: '12px', 
+              borderRadius: '6px',
+              backgroundColor: esError ? '#fee' : '#efe',
+              color: esError ? '#c33' : '#363',
+              border: `1px solid ${esError ? '#fcc' : '#cfc'}`,
+              marginTop: '12px'
+            }}>
               {mensaje}
             </div>
           )}
