@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api", 
+  baseURL: import.meta.env.VITE_API_URL || "/api",
 });
 
 //USUARIOS
@@ -23,9 +23,9 @@ export const deleteUsuario = (idUsuario) => api.delete(`/usuarios/${idUsuario}`)
 export const sendContacto = (payload) => api.post("/contacto", payload);
 
 export const getContactos = async () => {
-  const res = await api.get("/contacto");
-  const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
-  return data;
+  const resContactos = await api.get("/contacto");
+  const contactos = Array.isArray(resContactos.data) ? resContactos.data : (resContactos.data?.content ?? []);
+  return contactos;
 };
 
 // PRODUCTOS 
@@ -48,9 +48,9 @@ export const updateProducto = (id, payload) => api.put(`/productos/${id}`, paylo
 export const deleteProducto = (id) => api.delete(`/productos/${id}`);
 
 export const getProductosDestacados = async () => {
-  const res = await api.get("/productos/destacados");
-  const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
-  return data;
+  const resDestacados = await api.get("/productos/destacados");
+  const destacados = Array.isArray(resDestacados.data) ? resDestacados.data : (resDestacados.data?.content ?? []);
+  return destacados;
 };
 
 //VENTAS Y CARRITO 
